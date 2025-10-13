@@ -88,17 +88,17 @@ class MyTheme {
         filled: true,
         border: InputBorder.none, // No border initially
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(0.0),
-          borderSide: const BorderSide(
-            color: borderColor,
-            width: 1,
+          borderRadius: BorderRadius.zero,
+          borderSide: BorderSide(
+            color: greyColor.withOpacity(0.2),
+            width: 0.5,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(0.0),
-          borderSide: const BorderSide(
-            color: borderColor,
-            width: 1,
+          borderRadius: BorderRadius.zero,
+          borderSide: BorderSide(
+            color: greyColor.withOpacity(0.2),
+            width: 0.5,
           ),
         ),
       ),
