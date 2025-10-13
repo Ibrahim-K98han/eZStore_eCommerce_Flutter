@@ -77,19 +77,15 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 label: 'Email or Phone Number',
                 bottomSpace: 16.sp,
                 child: TextFormField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.zero,
-                      borderSide: BorderSide.none,
+                      borderSide: BorderSide(
+                        color: greyColor.withOpacity(0.2),
+                        width: 0.5,
+                      ),
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.zero,
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.zero,
-                      borderSide: BorderSide.none,
-                    ),
+
                     filled: true,
                     fillColor: const Color(0xffF8FAFC),
                     hintText: 'codylee@gmail.com',
@@ -103,7 +99,6 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 borderRadiusSize: 0,
                 text: "Continue",
                 fontSize: 14.sp,
-
                 onPressed: () {
                   Navigator.pushNamed(
                     context,

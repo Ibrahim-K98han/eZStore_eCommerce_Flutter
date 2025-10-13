@@ -10,16 +10,14 @@ import '../../widgets/custom_image.dart';
 import '../../widgets/custom_text.dart';
 import '../../widgets/primary_button.dart';
 
-class AuthenticationWithPassScreen extends StatefulWidget {
-  const AuthenticationWithPassScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<AuthenticationWithPassScreen> createState() =>
-      _AuthenticationWithPassScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _AuthenticationWithPassScreenState
-    extends State<AuthenticationWithPassScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -37,7 +35,7 @@ class _AuthenticationWithPassScreenState
             children: [
               Utils.verticalSpace(100.h),
               CustomText(
-                text: "Access your Account",
+                text: "Register your Account",
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
               ),
@@ -127,31 +125,26 @@ class _AuthenticationWithPassScreenState
               PrimaryButton(
                 bgColor: Color(0xff111827),
                 borderRadiusSize: 0,
-                text: "Sign In",
+                text: "Regsister",
                 fontSize: 14.sp,
                 onPressed: () {
-                  // Navigator.pushNamed(context, RouteNames.mainScreen);
+                  Navigator.pushNamed(
+                    context,
+                    RouteNames.verifyPhoneNumberScree,
+                  );
                 },
               ),
               Utils.verticalSpace(12.h),
-               Center(
+              const Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    CustomText(text: 'Already have a Account? ', fontSize: 16),
                     CustomText(
-                      text: 'Don’t have an account yet? ',
+                      text: 'Sign In',
                       fontSize: 16,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, RouteNames.registerScreen);
-                      },
-                      child: CustomText(
-                        text: 'Resister',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.underline,
-                      ),
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
                     ),
                   ],
                 ),
@@ -177,38 +170,102 @@ class _AuthenticationWithPassScreenState
   }
 
   Widget _buildRemember(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        CustomText(text: 'Style Preference'),
+        Utils.verticalSpace(12.h),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: Utils.only(top: 0.0),
-              child: Checkbox(
-                value: false,
-                // shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(Utils.radius(2.4))),
-                activeColor: primaryColor,
-                onChanged: (bool? val) {},
-              ),
+            Row(
+              children: [
+                Checkbox(
+                  value: false,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                  // shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(Utils.radius(2.4))),
+                  activeColor: primaryColor,
+                  onChanged: (bool? val) {},
+                ),
+                SizedBox(width: 4.w),
+                CustomText(text: 'Women', color: greyColor),
+              ],
             ),
-            const CustomText(
-              text: 'Remember me',
-              color: greyColor,
-              height: 1.6,
+
+            Row(
+              children: [
+                Checkbox(
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                  value: true,
+                  // shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(Utils.radius(2.4))),
+                  activeColor: primaryColor,
+                  onChanged: (bool? val) {},
+                ),
+                SizedBox(width: 4.w),
+                CustomText(text: 'Men', color: greyColor),
+              ],
+            ),
+            Row(
+              children: [
+                Checkbox(
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                  value: false,
+                  // shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(Utils.radius(2.4))),
+                  activeColor: primaryColor,
+                  onChanged: (bool? val) {},
+                ),
+                SizedBox(width: 4.w),
+                CustomText(text: 'Kids', color: greyColor),
+              ],
+            ),
+            Row(
+              children: [
+                Checkbox(
+                  value: false,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                  // shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(Utils.radius(2.4))),
+                  activeColor: primaryColor,
+                  onChanged: (bool? val) {},
+                ),
+                SizedBox(width: 4.w),
+                CustomText(text: 'Plus Size', color: greyColor),
+              ],
             ),
           ],
         ),
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, RouteNames.forgotPasswordScree);
-          },
-          child:  CustomText(
-            text: 'Forget Password',
-            fontWeight: FontWeight.w600,
-            color: Color(0xFFE94222),
-            fontSize: 14.sp,
-          ),
+        Utils.verticalSpace(12.h),
+        Row(
+          children: [
+            Checkbox(
+              value: false,
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+              // shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(Utils.radius(2.4))),
+              activeColor: primaryColor,
+              onChanged: (bool? val) {},
+            ),
+            SizedBox(width: 4.w),
+            Row(
+              children: [
+                CustomText(text: 'I agree with the ', color: greyColor),
+                CustomText(
+                  text: 'Term and Conditions',
+                  color: greyColor,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.underline,
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );

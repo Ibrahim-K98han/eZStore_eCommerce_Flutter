@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../routes/route_names.dart';
 import '../../utils/constraints.dart';
 import '../../utils/k_images.dart';
@@ -44,58 +45,55 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           SizedBox(
             height: size.height,
             width: size.width,
-            child: Padding(
-              padding: Utils.symmetric(),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _buildSkipButton(),
-                  _buildImagesSlider(),
-                  Utils.verticalSpace(size.height * 0.06),
-                  _buildContent(),
-                  Utils.verticalSpace(24.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _buildSkipButton(),
+                _buildImagesSlider(),
+                Utils.verticalSpace(size.height * 0.06),
+                _buildContent(),
+                Utils.verticalSpace(24.0),
 
-                  Utils.verticalSpace(40.0),
-                  Padding(
-                    padding: Utils.symmetric(),
-                    child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _buildDotIndicator(),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (_currentPage == data.length - 1) {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                RouteNames.authenticationsScreen,
-                                    (route) => false,
-                              );
-                            } else {
-                              _pageController.nextPage(
-                                duration: kDuration,
-                                curve: Curves.easeInOut,
-                              );
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size(52, 52),
-                            shape: const CircleBorder(),
-                            padding: const EdgeInsets.all(16),
-                            backgroundColor: Color(0xFFE43131)
-                          ),
-                          child: const Icon(
-                            Icons.arrow_forward, // or any icon you want
-                            color: Colors.white,
-                          ),
+                Utils.verticalSpace(40.0),
+                Padding(
+                  padding: Utils.symmetric(),
+                  child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildDotIndicator(),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (_currentPage == data.length - 1) {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              RouteNames.authenticationsScreen,
+                                  (route) => false,
+                            );
+                          } else {
+                            _pageController.nextPage(
+                              duration: kDuration,
+                              curve: Curves.easeInOut,
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(52, 52),
+                          shape: const CircleBorder(),
+                          padding: const EdgeInsets.all(16),
+                          backgroundColor: Color(0xFFE43131)
                         ),
+                        child: const Icon(
+                          Icons.arrow_forward, // or any icon you want
+                          color: Colors.white,
+                        ),
+                      ),
 
-                      ],
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
@@ -132,23 +130,26 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   Widget getContent() {
     final item = data[_currentPage];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      key: ValueKey('$_currentPage'),
-      children: [
-        CustomText(
-          text: item.title,
-          fontSize: 24.0,
-          fontWeight: FontWeight.w700,
-          color: Color(0xFF111827),
-        ),
-        Utils.verticalSpace(16.0),
-        CustomText(
-          text: item.subTitle,
-          color: Color(0xFF111827),
+    return Padding(
+      padding:  EdgeInsets.symmetric(horizontal: 20.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        key: ValueKey('$_currentPage'),
+        children: [
+          CustomText(
+            text: item.title,
+            fontSize: 24.0,
+            fontWeight: FontWeight.w700,
+            color: Color(0xFF111827),
+          ),
+          Utils.verticalSpace(16.0),
+          CustomText(
+            text: item.subTitle,
+            color: Color(0xFF111827),
 
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -189,12 +190,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             RouteNames.authenticationsScreen,
                 (route) => false,
           ),
-          child: const CustomText(
-            text: 'Skip',
-            fontWeight: FontWeight.w400,
-            fontSize: 18.0,
-            color: blackColor,
-            textAlign: TextAlign.right,
+          child:  Padding(
+            padding:  EdgeInsets.only(right: 20.w, bottom: 20.h),
+            child: CustomText(
+              text: 'Skip',
+              fontWeight: FontWeight.w400,
+              fontSize: 18.sp,
+              color: blackColor,
+              textAlign: TextAlign.right,
+            ),
           ),
         ),
       ],

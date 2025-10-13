@@ -96,6 +96,9 @@ class KImages {
   static const String google = 'assets/icons/google.svg';
   static const String facebook = 'assets/icons/facebook.svg';
   static const String apple = 'assets/icons/apple.svg';
+  static const String verifyPhoneNumber = 'assets/icons/verify_phone_number.svg';
+  static const String forgotPass = 'assets/icons/forgot_pass.svg';
+  static const String createNewPass = 'assets/icons/create_new_pass.svg';
 
 
   /// Image
