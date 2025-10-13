@@ -130,7 +130,7 @@ class _AuthenticationWithPassScreenState
                 text: "Sign In",
                 fontSize: 14.sp,
                 onPressed: () {
-                  // Navigator.pushNamed(context, RouteNames.mainScreen);
+                  Navigator.pushNamed(context, RouteNames.mainScreen);
                 },
               ),
               Utils.verticalSpace(12.h),

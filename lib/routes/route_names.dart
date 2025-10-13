@@ -7,6 +7,7 @@ import '../presentation/authentications/password_success_scree.dart';
 import '../presentation/authentications/register_screen.dart';
 import '../presentation/authentications/verify_email_scree.dart';
 import '../presentation/authentications/verify_phone_number_scree.dart';
+import '../presentation/main_screen/main_screen.dart';
 import '../presentation/onboard_screen/onboard_screen.dart';
 import '../presentation/splash_screen/splash_screen.dart';
 
@@ -83,6 +84,11 @@ class RouteNames {
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => const PasswordSuccessScree(),
+        );
+        case RouteNames.mainScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const MainScreen(),
         );
 
       default:

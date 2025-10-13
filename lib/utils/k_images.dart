@@ -9,19 +9,19 @@ class KImages {
   static const String onBoarding3 = 'assets/images/splash_3.jpg';
   static const String onBoarding4 = 'assets/images/splash_4.jpg';
 
-  ///Navigation Bar
-  static const String home = 'assets/icons/home.svg';
+
+
+  ///BottomNavbar
   static const String homeActive = 'assets/icons/home_active.svg';
-  static const String save = 'assets/icons/save.svg';
-  static const String saveActive = 'assets/icons/save_active.svg';
-  static const String search = 'assets/icons/search 03.svg';
-  static const String searchActive = 'assets/icons/search_active.svg';
-  static const String menu = 'assets/icons/menu.svg';
-  static const String menuActive = 'assets/icons/menu_active.svg';
-  static const String carAdd = 'assets/icons/car_add.svg';
-  static const String activeAddCar = 'assets/icons/active_car_add.svg';
-  static const String inbox = 'assets/icons/message.svg';
-  static const String activeInbox = 'assets/icons/message-active.svg';
+  static const String homeInactive = 'assets/icons/home_inactive.svg';
+  static const String categoryActive = 'assets/icons/category_active.svg';
+  static const String categoryInactive = 'assets/icons/category_inactive.svg';
+  static const String wishlistActive = 'assets/icons/wishlist_active.svg';
+  static const String wishlistInactive = 'assets/icons/wishlist_inactive.svg';
+  static const String profileActive = 'assets/icons/profile_active.svg';
+  static const String profileInactive = 'assets/icons/profile_inactive.svg';
+  static const String cart = 'assets/icons/cart.svg';
+
 
 
   /// Icon
@@ -99,6 +99,10 @@ class KImages {
   static const String verifyPhoneNumber = 'assets/icons/verify_phone_number.svg';
   static const String forgotPass = 'assets/icons/forgot_pass.svg';
   static const String createNewPass = 'assets/icons/create_new_pass.svg';
+  static const String notification = 'assets/icons/notification.svg';
+  static const String search = 'assets/icons/search.svg';
+  static const String camera = 'assets/icons/camera.svg';
+
 
 
   /// Image
@@ -125,6 +129,7 @@ class KImages {
   static const String onboardThree = 'assets/images/onboard_three.png';
   static const String onboardBg = 'assets/images/onboard_bg.png';
   static const String logoWithText = 'assets/images/logo_with_text.png';
+  static const String person = 'assets/images/person.png';
 
 
   /// payment

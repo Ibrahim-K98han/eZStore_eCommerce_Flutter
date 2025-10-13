@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xFF111827);
 
-const secondaryColor = Color(0xFFFE9900);
+const secondaryColor = Color(0xFFE43131);
 const blackColor = Color(0xFF0D274E);
 const greyColor = Color(0xFF535769);
 Color hintTextColor = const Color(0xFF000000).withOpacity(0.2);
@@ -14,7 +14,7 @@ const scaffoldBgColor = Color(0xFFFFFFFF);
 const grayBackgroundColor = Color(0xFFF3F3F3);
 const borderColor = Color(0xFFE8EFFF);
 const sTextColor = Color(0xFF6B6C6C);
-const textColor = Color(0xFF0C81F3);
+const textColor = Color(0xFF111827);
 
 const kDuration = Duration(microseconds: 300);
 
