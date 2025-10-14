@@ -78,6 +78,7 @@ class KImages {
   static const String editProfile = 'assets/icons/edit_profile.svg';
   static const String coinDollar = 'assets/icons/coin-dollar.svg';
   static const String percentage = 'assets/icons/percentage.svg';
+  static const String setting = 'assets/icons/setting.svg';
 
   static const String send = 'assets/icons/send-icon.svg';
   static const String logo = 'assets/icons/logo.svg';
@@ -112,6 +113,18 @@ class KImages {
   static const String toShip = 'assets/my_orders/to_ship.svg';
 
 
+  ///Profile Menu Icon
+  static const String appInfos = 'assets/profile_menu/app_info.svg';
+  static const String coupon = 'assets/profile_menu/coupon.svg';
+  static const String gift = 'assets/profile_menu/gift.svg';
+  static const String history = 'assets/profile_menu/history.svg';
+  static const String payment = 'assets/profile_menu/payment.svg';
+  static const String privacyPolicy = 'assets/profile_menu/privacy_policy.svg';
+  static const String support = 'assets/profile_menu/support.svg';
+  static const String termsAndCondition = 'assets/profile_menu/terms.svg';
+
+
+
 
   static const String logoText = 'assets/images/logo_text.png';
   static const String onboardOne = 'assets/images/onboard_one.png';
@@ -128,6 +141,7 @@ class KImages {
   static const String googlePay = 'assets/images/google_pay.png';
   static const String closeIcon = 'assets/images/close_icon.png';
   static const String shoppingCart = 'assets/images/shoping_cart.png';
+  static const String discountBanner = 'assets/images/discount_banner.png';
 
 
 
