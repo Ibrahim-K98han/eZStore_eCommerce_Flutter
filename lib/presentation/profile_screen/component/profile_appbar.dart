@@ -8,14 +8,30 @@ import '../../../utils/utils.dart';
 import '../../../widgets/custom_image.dart';
 import '../../../widgets/custom_text.dart';
 
-class ProfileAppbar extends StatelessWidget {
+class ProfileAppbar extends StatefulWidget {
   const ProfileAppbar({super.key});
+
+  @override
+  State<ProfileAppbar> createState() => _ProfileAppbarState();
+}
+
+class _ProfileAppbarState extends State<ProfileAppbar> {
+  String selectedLanguage = 'en';
+
+  final Map<String, Map<String, String>> languages = {
+    'en': {'name': 'English', 'flag': '🇺🇸'},
+    'es': {'name': 'Español', 'flag': '🇪🇸'},
+    'fr': {'name': 'Français', 'flag': '🇫🇷'},
+    'de': {'name': 'Deutsch', 'flag': '🇩🇪'},
+    'bn': {'name': 'বাংলা', 'flag': '🇧🇩'},
+    'ar': {'name': 'العربية', 'flag': '🇸🇦'},
+  };
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
-      toolbarHeight: Utils.vSize(90.h),
+      toolbarHeight: Utils.vSize(100.h),
       backgroundColor: transparent,
       pinned: true,
       flexibleSpace: Stack(
@@ -59,14 +75,82 @@ class ProfileAppbar extends StatelessWidget {
                 ),
                 Row(
                   children: [
+                    DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: selectedLanguage,
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.black87,
+                          size: 20.sp,
+                        ),
+                        isDense: true,
+                        menuWidth: 150.w,
+                        items:
+                            languages.entries.map((entry) {
+                              return DropdownMenuItem<String>(
+                                value: entry.key,
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 28,
+                                      height: 28,
+                                      child: Center(
+                                        child: Text(
+                                          entry.value['flag']!,
+                                          style: const TextStyle(fontSize: 18),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      entry.value['name']!,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }).toList(),
+                        onChanged: (String? newValue) {
+                          if (newValue != null) {
+                            setState(() {
+                              selectedLanguage = newValue;
+                            });
+                          }
+                        },
+                        selectedItemBuilder: (BuildContext context) {
+                          return languages.entries.map((entry) {
+                            return Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  width: 28,
+                                  height: 28,
+                                  child: Center(
+                                    child: Text(
+                                      entry.value['flag']!,
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }).toList();
+                        },
+                      ),
+                    ),
+                    Utils.horizontalSpace(10.w),
                     GestureDetector(
                       onTap: () {},
                       child: const CustomImage(
-                        path: KImages.notification,
+                        path: KImages.setting,
                         height: 26,
                         width: 26,
                       ),
                     ),
+                    Utils.horizontalSpace(10.w),
                     GestureDetector(
                       onTap: () {},
                       child: const CustomImage(
