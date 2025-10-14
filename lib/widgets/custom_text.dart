@@ -36,7 +36,7 @@ class CustomText extends StatelessWidget {
       textAlign: textAlign,
       overflow: overflow,
       maxLines: maxLine,
-      style: GoogleFonts.roboto(
+      style: GoogleFonts.kumbhSans(
         fontWeight: fontWeight,
         fontSize: fontSize.sp,
         color: color,
