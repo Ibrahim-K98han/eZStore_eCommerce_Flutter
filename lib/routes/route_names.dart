@@ -1,4 +1,6 @@
+import 'package:ezstore/presentation/search/search_screen.dart';
 import 'package:flutter/material.dart';
+import '../presentation/all_cart/all_cart_screen.dart';
 import '../presentation/authentications/authentication_with_pass_screen.dart';
 import '../presentation/authentications/authentications_screen.dart';
 import '../presentation/authentications/create_new_pass_scree.dart';
@@ -9,6 +11,8 @@ import '../presentation/authentications/verify_email_scree.dart';
 import '../presentation/authentications/verify_phone_number_scree.dart';
 import '../presentation/main_screen/main_screen.dart';
 import '../presentation/onboard_screen/onboard_screen.dart';
+import '../presentation/order_confirm/order_confirm_screen.dart';
+import '../presentation/product_details/product_details_screen.dart';
 import '../presentation/splash_screen/splash_screen.dart';
 
 class RouteNames {
@@ -24,6 +28,10 @@ class RouteNames {
   static const String createNewPassScree = '/createNewPassScree';
   static const String passwordSuccessScree = '/passwordSuccessScree';
   static const String mainScreen = '/mainScreen';
+  static const String searchScreen = '/searchScreen';
+  static const String productDetailsScreen = '/productDetailsScreen';
+  static const String allCartScreen = '/allCartScreen';
+  static const String orderConfirmScreen = '/orderConfirmScreen';
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     switch (settings.name) {
@@ -85,10 +93,30 @@ class RouteNames {
           settings: settings,
           builder: (_) => const PasswordSuccessScree(),
         );
-        case RouteNames.mainScreen:
+      case RouteNames.mainScreen:
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => const MainScreen(),
+        );
+      case RouteNames.searchScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const SearchScreen(),
+        );
+      case RouteNames.productDetailsScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const ProductDetailScreen(),
+        );
+      case RouteNames.allCartScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const AllCartScreen(),
+        );
+        case RouteNames.orderConfirmScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const OrderConfirmScreen(),
         );
 
       default:

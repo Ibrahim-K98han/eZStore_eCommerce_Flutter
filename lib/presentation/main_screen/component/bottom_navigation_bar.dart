@@ -1,110 +1,99 @@
-import 'dart:io';
-
-import 'package:ezstore/widgets/custom_text.dart';
+import 'package:ezstore/presentation/category_screen/category_screen.dart';
+import 'package:ezstore/presentation/home_screen/home_screen.dart';
+import 'package:ezstore/presentation/profile_screen/profile_screen.dart';
+import 'package:ezstore/presentation/wishlist_screen/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../utils/constraints.dart';
 import '../../../utils/k_images.dart';
+import '../../../utils/constraints.dart';
 import 'main_controller.dart';
 
 class MyBottomNavigationBar extends StatelessWidget {
   final MainController controller;
 
-  const MyBottomNavigationBar({Key? key, required this.controller})
-    : super(key: key);
+  const MyBottomNavigationBar({super.key, required this.controller});
+
+  List<PersistentTabConfig> _tabs() => [
+    PersistentTabConfig(
+      screen: const HomeScreen(), // Replace with your actual screen
+      item: ItemConfig(
+        icon: SvgPicture.asset(KImages.homeActive),
+        title: "Home",
+        inactiveIcon: SvgPicture.asset(KImages.homeInactive),
+        iconSize: 22.h,
+        activeForegroundColor: Colors.black,
+        inactiveForegroundColor: Colors.black,
+        textStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+      ),
+    ),
+    PersistentTabConfig(
+      screen: const CategoryScreen(), // Replace with your actual screen
+      item: ItemConfig(
+        icon: SvgPicture.asset(KImages.categoryActive),
+        title: "Category",
+        inactiveIcon: SvgPicture.asset(KImages.categoryInactive),
+        iconSize: 22.h,
+        activeForegroundColor: Colors.black,
+        inactiveForegroundColor: Colors.black,
+        textStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+      ),
+    ),
+    PersistentTabConfig(
+      screen: const CategoryScreen(), // Replace with your actual screen
+      item: ItemConfig(
+        icon: SvgPicture.asset(KImages.cart),
+        // title: "Category",
+        inactiveIcon: SvgPicture.asset(KImages.cart),
+        iconSize: 24.h,
+        activeForegroundColor: Color(0xFFE43131),
+      ),
+    ),
+    PersistentTabConfig(
+      screen: const WishlistScreen(), // Replace with your actual screen
+      item: ItemConfig(
+        icon: SvgPicture.asset(KImages.wishlistActive),
+        title: "Wishlist",
+        inactiveIcon: SvgPicture.asset(KImages.wishlistInactive),
+        iconSize: 22.h,
+        activeForegroundColor: Colors.black,
+        inactiveForegroundColor: Colors.black,
+        textStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+      ),
+    ),
+    PersistentTabConfig(
+      screen: const ProfileScreen(), // Replace with your actual screen
+      item: ItemConfig(
+        icon: SvgPicture.asset(KImages.profileActive),
+        title: "Profile",
+        inactiveIcon: SvgPicture.asset(KImages.profileInactive),
+        iconSize: 22.h,
+        activeForegroundColor: Colors.black,
+        inactiveForegroundColor: Colors.black,
+        textStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+      ),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<int>(
-      initialData: 0,
-      stream: controller.naveListener.stream,
-      builder: (context, snapshot) {
-        final selectedIndex = snapshot.data ?? 0;
-        return BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          notchMargin: 8.0,
-          color: whiteColor,
-          elevation: 8,
-          child: Container(
-            color: Colors.transparent,
-            height: Platform.isAndroid ? 100 : 110,
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    _navButton(
-                      KImages.homeInactive,
-                      'Home',
-                      KImages.homeActive,
-                      0,
-                      selectedIndex,
-                    ),
-                    SizedBox(width: 30.w),
-                    _navButton(
-                      KImages.categoryInactive,
-                      'Category',
-                      KImages.categoryActive,
-                      1,
-                      selectedIndex,
-                    ),
-                  ],
-                ),
-                // Right Side Icons
-                Row(
-                  children: [
-                    _navButton(
-                      KImages.wishlistInactive,
-                      'Wishlist',
-                      KImages.wishlistActive,
-                      3,
-                      selectedIndex,
-                    ),
-                    SizedBox(width: 30.w),
-                    _navButton(
-                      KImages.profileInactive,
-                      'Profile',
-                      KImages.profileActive,
-                      4,
-                      selectedIndex,
-                    ),
-                  ],
-                ),
-              ],
+    return PersistentTabView(
+      tabs: _tabs(),
+      navBarBuilder:
+          (navBarConfig) => Style13BottomNavBar(
+            navBarConfig: navBarConfig,
+            middleItemSize: 50.h,
+            height: 60.h,
+            navBarDecoration: NavBarDecoration(
+              color: whiteColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(24),
+                topRight: Radius.circular(24),
+              ),
+              boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 4)],
             ),
           ),
-        );
-      },
-    );
-  }
-
-  Widget _navButton(
-    String icon,
-    String text,
-    String activeIcon,
-    int index,
-    int selectedIndex,
-  ) {
-    return GestureDetector(
-      onTap: () => controller.changeNav(index),
-      child: Column(
-        children: [
-          SvgPicture.asset(
-            selectedIndex == index ? activeIcon : icon,
-            height: 24.h,
-            width: 24.w,
-            fit: BoxFit.cover,
-          ),
-          CustomText(
-            text: text,
-            color:
-                selectedIndex == index ? Color(0xff111827) : Color(0xff334155),
-          ),
-        ],
-      ),
     );
   }
 }

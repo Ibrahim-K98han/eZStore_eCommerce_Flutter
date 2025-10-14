@@ -15,7 +15,7 @@ class HomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
-      toolbarHeight: Utils.vSize(160.0),
+      toolbarHeight: Utils.vSize(140.h),
       backgroundColor: transparent,
       pinned: true,
       flexibleSpace: Stack(
@@ -33,7 +33,7 @@ class HomeAppBar extends StatelessWidget {
           ),
           // Positioned Profile + Location + Icons Row
           Positioned(
-            top: 60.h,
+            top: 50.h,
             left: 20.w,
             right: 20.w,
             child: Row(
@@ -79,11 +79,7 @@ class HomeAppBar extends StatelessWidget {
                 GestureDetector(
                   onTap: () {},
                   child: _borderContainer(
-                    const CustomImage(
-                      path: KImages.notification,
-                      height: 26,
-                      width: 26,
-                    ),
+                    const CustomImage(path: KImages.notification, height: 26.0),
                   ),
                 ),
               ],
@@ -95,56 +91,54 @@ class HomeAppBar extends StatelessWidget {
             left: 20.w,
             right: 20.w,
             bottom: 10.h,
-            child: TextFormField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 16.h,
-                  horizontal: 16.w,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, RouteNames.searchScreen);
+              },
+              child: Container(
+                height: 44.h,
+                padding: Utils.symmetric(h: 10.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(99.0),
+                  color: whiteColor,
                 ),
-                hintText: 'Search Products...',
-                hintStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
-                suffixIcon: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      CustomImage(
-                        path: KImages.camera,
-                        height: 24.h,
-                        width: 24.w,
-                        fit: BoxFit.cover,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: Utils.symmetric(h: 10.w),
+                      child: CustomText(
+                        text: "Search Products...",
+                        color: Color(0xFFCBD5E1),
                       ),
-                      SizedBox(width: 8.w),
-                      Container(
-                        width: 50.w,
-                        padding: Utils.symmetric(h: 10.w, v: 8.h),
-                        decoration: BoxDecoration(
-                          color: secondaryColor,
-                          borderRadius: BorderRadius.circular(20.r),
-                        ),
-                        child: CustomImage(
-                          path: KImages.search,
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CustomImage(
+                          path: KImages.camera,
                           height: 24.h,
                           width: 24.w,
+                          fit: BoxFit.cover,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50.r),
-                  borderSide: BorderSide.none,
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(50.r),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(50.r),
+                        Utils.horizontalSpace(12.w),
+                        Container(
+                          width: 50.w,
+                          height: 36.h,
+                          padding: Utils.symmetric(h: 10.w, v: 8.h),
+                          decoration: BoxDecoration(
+                            color: secondaryColor,
+                            borderRadius: BorderRadius.circular(99.r),
+                          ),
+                          child: CustomImage(
+                            path: KImages.search,
+                            height: 24.h,
+                            width: 24.w,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),

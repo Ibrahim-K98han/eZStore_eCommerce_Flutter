@@ -39,26 +39,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: StreamBuilder<int>(
-
-        initialData: 0,
-        stream: _controller.naveListener.stream,
-        builder: (context, snapshot) {
-          final currentIndex = snapshot.data ?? 0;
-          return SizedBox(
-            width: 60.w,
-            height: 60.h,
-            child: FloatingActionButton(
-              elevation: 0,
-              onPressed: () => _controller.changeNav(2),
-              backgroundColor: currentIndex == 2 ? primaryColor : blackColor,
-              shape: const CircleBorder(),
-              child: const CustomImage(path: KImages.cart),
-            ),
-          );
-        },
-      ),
       body: StreamBuilder<int>(
         initialData: 0,
         stream: _controller.naveListener.stream,
