@@ -23,7 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: CustomImage(path: KImages.logoWithText, height: 30.h),
+        title: CustomImage(path: KImages.logoWithText, height: 32.h),
       ),
       backgroundColor: whiteColor,
       body: SingleChildScrollView(
@@ -33,7 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Utils.verticalSpace(100.h),
+              Utils.verticalSpace(90.h),
               CustomText(
                 text: "Register your Account",
                 fontSize: 18.sp,

@@ -7,12 +7,23 @@ import 'package:ezstore/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../routes/route_names.dart';
 
 class ProductCardSection extends StatelessWidget {
   const ProductCardSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    double aspectRatio;
+    if (screenHeight < 800) {
+      aspectRatio = 0.72; // slightly taller cards for small screens
+    } else if (screenHeight < 900) {
+      aspectRatio = 0.74;
+    } else {
+      aspectRatio = 0.55;
+    }
     return SliverPadding(
       padding: Utils.symmetric(h: 17.w),
       sliver: SliverGrid(
@@ -20,15 +31,12 @@ class ProductCardSection extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 6,
           mainAxisSpacing: 10,
-          mainAxisExtent: 280.h, // Adjust height for your card
+          childAspectRatio: aspectRatio,  // Adjust height for your card
         ),
-        delegate: SliverChildBuilderDelegate(
-              (context, index) {
-            final sale = productList[index];
-            return ProductCard(item: sale);
-          },
-          childCount: productList.length,
-        ),
+        delegate: SliverChildBuilderDelegate((context, index) {
+          final sale = productList[index];
+          return ProductCard(item: sale);
+        }, childCount: productList.length),
       ),
     );
   }
@@ -53,12 +61,20 @@ class ProductCard extends StatelessWidget {
             child: CustomImage(path: item.imageUrl, fit: BoxFit.cover),
           ),
           Utils.verticalSpace(6.h),
-          CustomText(
-            text: item.name,
-            fontSize: 11.sp,
-            fontWeight: FontWeight.w500,
-            maxLine: 3,
-            textAlign: TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pushNamed(RouteNames.productDetailsScreen);
+            },
+            child: CustomText(
+              text: item.name,
+              fontSize: 11.sp,
+              fontWeight: FontWeight.w500,
+              maxLine: 2,
+              textAlign: TextAlign.start,
+            ),
           ),
           Utils.verticalSpace(6.h),
           Row(

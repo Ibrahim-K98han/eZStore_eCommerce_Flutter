@@ -92,20 +92,20 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                                 child: Row(
                                   children: [
                                     SizedBox(
-                                      width: 28,
-                                      height: 28,
+                                      width: 28.w,
+                                      height: 28.h,
                                       child: Center(
                                         child: Text(
                                           entry.value['flag']!,
-                                          style: const TextStyle(fontSize: 18),
+                                          style:  TextStyle(fontSize: 18.sp),
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(width: 8),
+                                     SizedBox(width: 8.w),
                                     Text(
                                       entry.value['name']!,
-                                      style: const TextStyle(
-                                        fontSize: 14,
+                                      style:  TextStyle(
+                                        fontSize: 14.sp,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -126,12 +126,12 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 SizedBox(
-                                  width: 28,
-                                  height: 28,
+                                  width: 28.w,
+                                  height: 28.h,
                                   child: Center(
                                     child: Text(
                                       entry.value['flag']!,
-                                      style: const TextStyle(fontSize: 18),
+                                      style:  TextStyle(fontSize: 18.sp),
                                     ),
                                   ),
                                 ),
@@ -144,19 +144,24 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                     Utils.horizontalSpace(10.w),
                     GestureDetector(
                       onTap: () {},
-                      child: const CustomImage(
+                      child:  CustomImage(
                         path: KImages.setting,
-                        height: 26,
-                        width: 26,
+                        height: 26.h,
+                        width: 26.w,
                       ),
                     ),
                     Utils.horizontalSpace(10.w),
                     GestureDetector(
-                      onTap: () {},
-                      child: const CustomImage(
+                      onTap: () {
+                        Navigator.of(
+                          context,
+                          rootNavigator: true,
+                        ).pushNamed(RouteNames.notificationScreen);
+                      },
+                      child:  CustomImage(
                         path: KImages.notification,
-                        height: 26,
-                        width: 26,
+                        height: 26.h,
+                        width: 26.w,
                       ),
                     ),
                   ],

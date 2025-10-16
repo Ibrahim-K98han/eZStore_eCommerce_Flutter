@@ -1,4 +1,5 @@
 import 'package:ezstore/presentation/profile_screen/component/profile_menu_item.dart';
+import 'package:ezstore/routes/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,7 +12,7 @@ class ProfileMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.only(top: 20.h),
+        padding: EdgeInsets.only(top: 10.h),
         child: Column(
           children: [
             ProfileMenuItem(
@@ -29,6 +30,16 @@ class ProfileMenu extends StatelessWidget {
               onTap: () {},
               img: KImages.history,
               text: 'History',
+            ),
+            ProfileMenuItem(
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.myOrderScreen);
+              },
+              img: KImages.history,
+              text: 'My Orders',
             ),
             ProfileMenuItem(
               onTap: () {},

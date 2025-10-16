@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../routes/route_names.dart';
 import '../../utils/custom_form.dart';
 import '../../widgets/feeback_dialog.dart';
 import '../product_details/product_details_screen.dart';
@@ -32,21 +33,14 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 96.h,
+        height: 90.h,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12.r),
             topRight: Radius.circular(12.r),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1), // shadow color
-              offset: Offset(0, -4), // vertical offset: negative for top
-              blurRadius: 8,
-              spreadRadius: 0,
-            ),
-          ],
+          boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 4)],
         ),
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
         child: Row(
@@ -67,6 +61,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
                 onPressed: () {
                   showModalBottomSheet(
                     context: context,
+                    isScrollControlled: true,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(12.r),
@@ -267,8 +262,8 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 460.h,
-      padding: EdgeInsets.all(10.r),
+      height: 500.h,
+      padding: Utils.symmetric(h: 16.0, v: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -288,17 +283,17 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                       children: [
                         CustomImage(
                           path: KImages.visa,
-                          width: 20.w,
+                          width: 22.w,
                           height: 20.h,
                         ),
                         CustomImage(
                           path: KImages.googlePay,
-                          width: 20.w,
+                          width: 22.w,
                           height: 20.h,
                         ),
                         CustomImage(
                           path: KImages.paypal,
-                          width: 20.w,
+                          width: 22.w,
                           height: 20.h,
                         ),
                       ],
@@ -485,12 +480,22 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                               ),
                               Utils.horizontalSpace(10.w),
                               Expanded(
-                                child: PrimaryButton(
-                                  minimumSize: Size(140.w, 44.h),
-                                  borderRadiusSize: 0.r,
-                                  fontSize: 11.sp,
-                                  text: 'Continue Shopping',
-                                  onPressed: () {},
+                                child: GestureDetector(
+                                  onTap: () {
+                                   Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    width: 140.w,
+                                    height: 44.h,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                 //     border: Border.all(color: borderColor),
+                                    ),
+                                    child: Center(
+                                      child: CustomText(
+                                        text: 'Continue', fontSize: 11.sp,color: whiteColor),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -566,27 +571,30 @@ class CartWidget extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: Utils.symmetric(h: 6.w, v: 6.h),
+                        height: 28.h,
+                        width: 28.h,
                         decoration: BoxDecoration(
                           color: borderColor.withOpacity(0.1),
                           border: Border.all(color: textColor.withOpacity(0.2)),
                         ),
-                        child: CustomImage(path: KImages.trash),
+                        child: Center(child: CustomImage(path: KImages.trash, height: 14.h,)),
                       ),
                       Container(
-                        padding: Utils.symmetric(h: 12.w, v: 4.h),
+                        height: 28.h,
+                        width: 28.h,
                         decoration: BoxDecoration(
                           border: Border.all(color: textColor.withOpacity(0.2)),
                         ),
-                        child: CustomText(text: '1', fontSize: 10.sp),
+                        child: Center(child: CustomText(text: '1', fontSize: 12.sp)),
                       ),
                       Container(
-                        padding: Utils.symmetric(h: 6.w, v: 6.h),
+                        height: 28.h,
+                        width: 28.h,
                         decoration: BoxDecoration(
                           color: borderColor.withOpacity(0.1),
                           border: Border.all(color: textColor.withOpacity(0.2)),
                         ),
-                        child: CustomImage(path: KImages.plus),
+                        child: Center(child: CustomImage(path: KImages.plus, height: 16.h)),
                       ),
                     ],
                   ),

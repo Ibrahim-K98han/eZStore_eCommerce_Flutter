@@ -12,6 +12,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../Data/dummy_data.dart';
+import '../home_screen/component/product_card_section.dart';
+
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key});
 
@@ -22,57 +25,105 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    double aspectRatio;
+    if (screenHeight < 800) {
+      aspectRatio = 0.72; // slightly taller cards for small screens
+    } else if (screenHeight < 900) {
+      aspectRatio = 0.74;
+    } else {
+      aspectRatio = 0.55;
+    }
     return Scaffold(
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.h),
-        child: Row(
-          children: [
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(12.r),
+        padding: EdgeInsets.only(bottom: 0.h),
+        child: Container(
+          padding: Utils.symmetric(h: 16.w),
+          height: 90.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12.r),
+              topRight: Radius.circular(12.r),
+            ),
+            color: Colors.white,
+            boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 4)],
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(12.r),
+                        ),
                       ),
+                      backgroundColor: Colors.white,
+                      builder: (context) {
+                        return AddToCartBottomSheet();
+                      },
+                    );
+                  },
+                  child: Container(
+                    width: 150.w,
+                    height: 44.h,
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      border: Border.all(color: borderColor, width: 1.0),
                     ),
-                    backgroundColor: Colors.white,
-                    builder: (context) {
-                      return AddToCartBottomSheet();
-                    },
-                  );
-                },
-                child: Container(
-                  width: 150.w,
-                  height: 44.h,
-                  decoration: BoxDecoration(
-                    color: whiteColor,
-                    border: Border.all(color: borderColor),
+                    child: Center(child: CustomText(text: 'Add to Cart')),
                   ),
-                  child: Center(child: CustomText(text: 'Add to Cart')),
                 ),
               ),
-            ),
-            Utils.horizontalSpace(10.w),
-            Expanded(
-              child: PrimaryButton(
-                minimumSize: Size(150.w, 44.h),
-                borderRadiusSize: 0.r,
-                text: 'Buy Now',
-                onPressed: () {},
+              Utils.horizontalSpace(8.w),
+              Expanded(
+                child: PrimaryButton(
+                  borderRadiusSize: 0.r,
+                  text: 'Buy Now',
+                  onPressed: () {
+                    Navigator.pushNamed(context, RouteNames.orderConfirmScreen);
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             SliderWidget(),
             ProductDetailsWidget(),
             ProductReviewRatingWidget(),
+            Padding(
+              padding: Utils.symmetric(h: 17.0),
+              child: CustomText(text: "Similar Products", fontSize: 16.sp, fontWeight: FontWeight.w500,),
+            ),
+            Utils.verticalSpace(4.h),
+            Padding(
+              padding: Utils.symmetric(h: 17.0),
+              child: GridView.builder(
+                padding: Utils.all(value: 0.0),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(), // Prevents internal scrolling
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 6,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: aspectRatio,  // Ad
+                ),
+                itemCount: productList.length,
+                itemBuilder: (context, index) {
+                  final sale = productList[index];
+                  return ProductCard(item: sale);
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -102,7 +153,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       height: 450.h,
-      padding: EdgeInsets.all(10.r),
+      padding: Utils.symmetric(h: 17.0, v: 10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -195,85 +246,66 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
             }),
           ),
           Utils.verticalSpace(6.h),
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      CustomText(text: 'Size: ', fontSize: 12.sp),
-                      CustomText(text: 'L', fontWeight: FontWeight.w500),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 32.w,
-                        height: 32.h,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: textColor),
-                        ),
-                        child: Center(child: CustomText(text: 'S')),
-                      ),
-                      Padding(
-                        padding: Utils.symmetric(h: 6.w),
-                        child: Container(
-                          width: 32.w,
-                          height: 32.h,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: textColor),
-                          ),
-                          child: Center(child: CustomText(text: 'S')),
-                        ),
-                      ),
-                      Container(
-                        width: 32.w,
-                        height: 32.h,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: textColor),
-                        ),
-                        child: Center(child: CustomText(text: 'S')),
-                      ),
-                    ],
+                  CustomText(text: 'Size: L', fontSize: 12.sp),
+                  Utils.horizontalSpace(50.w),
+                  CustomText(
+                    text: 'Size Guide ',
+                    decoration: TextDecoration.underline,
+                    fontSize: 12.sp,
                   ),
                 ],
               ),
-              Utils.horizontalSpace(16.w),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      CustomText(
-                        text: 'Size Guide ',
-                        decoration: TextDecoration.underline,
-                        fontSize: 12.sp,
-                      ),
-                    ],
+                  Container(
+                    width: 32.w,
+                    height: 32.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: borderColor,width: 1),
+                    ),
+                    child: Center(child: CustomText(text: 'S')),
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 32.w,
-                        height: 32.h,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: textColor),
-                        ),
-                        child: Center(child: CustomText(text: 'XL')),
-                      ),
-                      Padding(
-                        padding: Utils.symmetric(h: 6.w),
-                        child: Container(
-                          width: 32.w,
-                          height: 32.h,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: textColor),
-                          ),
-                          child: Center(child: CustomText(text: 'XXL')),
-                        ),
-                      ),
-                    ],
+                  Utils.horizontalSpace(6.w),
+                  Container(
+                    width: 32.w,
+                    height: 32.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: borderColor,width: 1),
+                    ),
+                    child: Center(child: CustomText(text: 'M')),
+                  ),
+                  Utils.horizontalSpace(6.w),
+                  Container(
+                    width: 32.w,
+                    height: 32.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: borderColor,width: 1),
+                    ),
+                    child: Center(child: CustomText(text: 'L')),
+                  ),
+                  Utils.horizontalSpace(6.w),
+                  Container(
+                    width: 32.w,
+                    height: 32.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: borderColor,width: 1),
+                    ),
+                    child: Center(child: CustomText(text: 'XL')),
+                  ),
+                  Utils.horizontalSpace(6.w),
+                  Container(
+                    width: 32.w,
+                    height: 32.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: borderColor,width: 1),
+                    ),
+                    child: Center(child: CustomText(text: 'XXL')),
                   ),
                 ],
               ),
@@ -284,21 +316,26 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomImage(path: KImages.wishlistInactive),
-              Container(
-                width: 150.w,
-                height: 44.h,
-                decoration: BoxDecoration(
-                  color: whiteColor,
-                  border: Border.all(color: borderColor),
+              GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, RouteNames.allCartScreen);
+                },
+                child: Container(
+                  width: 150.w,
+                  height: 44.h,
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    border: Border.all(color: borderColor,width: 1),
+                  ),
+                  child: Center(child: CustomText(text: 'Add to Cart')),
                 ),
-                child: Center(child: CustomText(text: 'Add to Cart')),
               ),
               PrimaryButton(
                 minimumSize: Size(150.w, 44.h),
                 borderRadiusSize: 0.r,
                 text: 'Buy Now',
                 onPressed: () {
-                  Navigator.pushNamed(context, RouteNames.allCartScreen);
+                  Navigator.pushNamed(context, RouteNames.orderConfirmScreen);
                 },
               ),
             ],
@@ -321,7 +358,7 @@ class _ProductReviewRatingWidgetState extends State<ProductReviewRatingWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Utils.symmetric(h: 20.w),
+      padding: Utils.symmetric(h: 17.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -455,7 +492,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Utils.symmetric(h: 20.w),
+      padding: Utils.symmetric(h: 17.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -539,7 +576,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                   Icon(Icons.arrow_forward_ios, size: 16.sp),
                 ],
               ),
-              Utils.horizontalSpace(16.w),
+              Utils.horizontalSpace(12.w),
               Row(
                 children: [
                   CustomText(

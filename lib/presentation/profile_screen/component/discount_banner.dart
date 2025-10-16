@@ -14,8 +14,8 @@ class DiscountBanner extends StatelessWidget {
         padding: EdgeInsets.only(
           left: 20.w,
           right: 20.w,
-          bottom: 16.h,
-          top: 12.h,
+          bottom: 10.h,
+          top: 10.h,
         ),
         child: CustomImage(path: KImages.discountBanner),
       ),

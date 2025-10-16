@@ -1,3 +1,4 @@
+import 'package:ezstore/presentation/my_orders/my_order_screen.dart';
 import 'package:ezstore/presentation/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import '../presentation/all_cart/all_cart_screen.dart';
@@ -13,7 +14,9 @@ import '../presentation/main_screen/main_screen.dart';
 import '../presentation/onboard_screen/onboard_screen.dart';
 import '../presentation/order_confirm/order_confirm_screen.dart';
 import '../presentation/product_details/product_details_screen.dart';
+import '../presentation/notification/notification_screen.dart';
 import '../presentation/splash_screen/splash_screen.dart';
+import '../presentation/wishlist_screen/wishlist_with_select_screen.dart';
 
 class RouteNames {
   static const String splashScreen = '/splashScreen';
@@ -32,6 +35,9 @@ class RouteNames {
   static const String productDetailsScreen = '/productDetailsScreen';
   static const String allCartScreen = '/allCartScreen';
   static const String orderConfirmScreen = '/orderConfirmScreen';
+  static const String notificationScreen = '/notificationScreen';
+  static const String myOrderScreen = '/myOrderScreen';
+  static const String wishlistWithSelectScreen = '/wishlistWithSelectScreen';
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     switch (settings.name) {
@@ -113,10 +119,25 @@ class RouteNames {
           settings: settings,
           builder: (_) => const AllCartScreen(),
         );
-        case RouteNames.orderConfirmScreen:
+      case RouteNames.orderConfirmScreen:
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => const OrderConfirmScreen(),
+        );
+      case RouteNames.notificationScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const NotificationScreen(),
+        );
+      case RouteNames.myOrderScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const MyOrderScreen(),
+        );
+        case RouteNames.wishlistWithSelectScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const WishlistWithSelectScreen(),
         );
 
       default:

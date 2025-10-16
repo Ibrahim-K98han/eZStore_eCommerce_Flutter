@@ -14,12 +14,15 @@ const scaffoldBgColor = Color(0xFFFFFFFF);
 const grayBackgroundColor = Color(0xFFF3F3F3);
 
 
-const sTextColor = Color(0xFF6B6C6C);
+const tTextColor = Color(0xFF343434);
+const sTextColor = Color(0xFF334155);
+
+
 const textColor = Color(0xFF111827);
 const textLightColor = Color(0xFF334155);
 const greyLightColor = Color(0xFFF8FAFC);
 const sliderBgColor = Color(0xFFD6CFC8);
-const borderColor = Color(0xFFCBD5E1);
+const borderColor = Color(0xFFF1F5F9);
 const textGreyColor = Color(0xFF475569);
 
 const kDuration = Duration(microseconds: 300);

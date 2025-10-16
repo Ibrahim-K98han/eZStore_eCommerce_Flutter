@@ -14,9 +14,9 @@ class MyOrdersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: Utils.symmetric(v: 10.h),
+        padding: Utils.symmetric(v: 0.h),
         child: Container(
-          padding: Utils.symmetric(h: 12.w, v: 12.h),
+          padding: Utils.symmetric(h: 10.w, v: 10.h),
           decoration: BoxDecoration(color: whiteColor),
           child: Column(
             children: [
@@ -41,7 +41,7 @@ class MyOrdersWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Utils.verticalSpace(12.h),
+              Utils.verticalSpace(10.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

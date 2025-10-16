@@ -1,3 +1,4 @@
+import 'package:ezstore/presentation/cart_screen/cart_screen.dart';
 import 'package:ezstore/presentation/category_screen/category_screen.dart';
 import 'package:ezstore/presentation/home_screen/home_screen.dart';
 import 'package:ezstore/presentation/profile_screen/profile_screen.dart';
@@ -11,9 +12,9 @@ import '../../../utils/constraints.dart';
 import 'main_controller.dart';
 
 class MyBottomNavigationBar extends StatelessWidget {
-  final MainController controller;
 
-  const MyBottomNavigationBar({super.key, required this.controller});
+
+  const MyBottomNavigationBar({super.key});
 
   List<PersistentTabConfig> _tabs() => [
     PersistentTabConfig(
@@ -41,7 +42,7 @@ class MyBottomNavigationBar extends StatelessWidget {
       ),
     ),
     PersistentTabConfig(
-      screen: const CategoryScreen(), // Replace with your actual screen
+      screen: const CartScreen(), // Replace with your actual screen
       item: ItemConfig(
         icon: SvgPicture.asset(KImages.cart),
         // title: "Category",
@@ -79,6 +80,7 @@ class MyBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
+      navBarOverlap: NavBarOverlap.full(),
       tabs: _tabs(),
       navBarBuilder:
           (navBarConfig) => Style13BottomNavBar(

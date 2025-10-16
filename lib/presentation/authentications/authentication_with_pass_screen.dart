@@ -25,7 +25,7 @@ class _AuthenticationWithPassScreenState
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: CustomImage(path: KImages.logoWithText, height: 30.h),
+        title: CustomImage(path: KImages.logoWithText, height: 32.h),
       ),
       backgroundColor: whiteColor,
       body: SingleChildScrollView(
@@ -35,7 +35,7 @@ class _AuthenticationWithPassScreenState
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Utils.verticalSpace(100.h),
+              Utils.verticalSpace(90.h),
               CustomText(
                 text: "Access your Account",
                 fontSize: 18.sp,
@@ -109,7 +109,7 @@ class _AuthenticationWithPassScreenState
 
                     filled: true,
                     fillColor: const Color(0xffF8FAFC),
-                    hintText: 'password',
+                    hintText: '*******',
                     suffixIcon: IconButton(
                       splashRadius: 18.0,
                       onPressed: () {},
@@ -205,8 +205,8 @@ class _AuthenticationWithPassScreenState
           },
           child:  CustomText(
             text: 'Forget Password',
-            fontWeight: FontWeight.w600,
-            color: Color(0xFFE94222),
+            fontWeight: FontWeight.w400,
+            color: Color(0xFFFF4747),
             fontSize: 14.sp,
           ),
         ),

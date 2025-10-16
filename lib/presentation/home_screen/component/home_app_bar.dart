@@ -13,9 +13,18 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    double height;
+    if (screenHeight < 800) {
+      height = 154; // slightly taller cards for small screens
+    } else if (screenHeight < 900) {
+      height = 150;
+    } else {
+      height = 130;
+    }
     return SliverAppBar(
       automaticallyImplyLeading: false,
-      toolbarHeight: Utils.vSize(140.h),
+      toolbarHeight: Utils.vSize(height.h),
       backgroundColor: transparent,
       pinned: true,
       flexibleSpace: Stack(
@@ -77,7 +86,9 @@ class HomeAppBar extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: (){
+                    Navigator.of(context, rootNavigator: true).pushNamed(RouteNames.notificationScreen);
+                  },
                   child: _borderContainer(
                     const CustomImage(path: KImages.notification, height: 26.0),
                   ),
@@ -92,8 +103,8 @@ class HomeAppBar extends StatelessWidget {
             right: 20.w,
             bottom: 10.h,
             child: GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, RouteNames.searchScreen);
+              onTap: (){
+                Navigator.of(context, rootNavigator: true).pushNamed(RouteNames.searchScreen);
               },
               child: Container(
                 height: 44.h,

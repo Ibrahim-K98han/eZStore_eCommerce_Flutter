@@ -39,8 +39,10 @@ class FlashSaleSection extends StatelessWidget {
                     ],
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CustomText(text: "Shop More"),
+                      Utils.horizontalSpace(4.w),
                       CustomImage(path: KImages.arrowRight),
                     ],
                   ),
@@ -78,27 +80,29 @@ class FlashSaleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.w,
+      width: 98.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: 100.h,
+            height: 98.h,
             width: double.infinity,
             child: CustomImage(path: item.imageUrl, fit: BoxFit.cover),
           ),
           Utils.verticalSpace(6.h),
           GestureDetector(
             onTap: (){
-              Navigator.pushNamed(context, RouteNames.productDetailsScreen);
+              Navigator.of(context, rootNavigator: true).pushNamed(RouteNames.productDetailsScreen);
+           //   Navigator.pushNamed(context, RouteNames.productDetailsScreen);
             },
             child: CustomText(
               text: item.name,
               fontSize: 11.sp,
               fontWeight: FontWeight.w500,
-              maxLine: 3,
-              textAlign: TextAlign.center,
+              maxLine: 2,
+              textAlign: TextAlign.start,
+              height: 1.3,
             ),
           ),
           Utils.verticalSpace(6.h),

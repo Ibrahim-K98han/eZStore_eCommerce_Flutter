@@ -20,34 +20,48 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final MainController _controller = MainController();
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    CategoryScreen(),
-    CartScreen(),
-    WishlistScreen(),
-    ProfileScreen(),
-  ];
+  final _homeController = MainController();
+  late List<Widget> screenList;
+
+  // final List<Widget> _screens = const [
+  //   HomeScreen(),
+  //   CategoryScreen(),
+  //   CartScreen(),
+  //   WishlistScreen(),
+  //   ProfileScreen(),
+  // ];
 
   @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    screenList = [
+      HomeScreen(),
+      CategoryScreen(),
+      CartScreen(),
+      WishlistScreen(),
+      ProfileScreen(),
+    ];
   }
+
+  // @override
+  // void dispose() {
+  //   _homeController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
       body: StreamBuilder<int>(
         initialData: 0,
-        stream: _controller.naveListener.stream,
+        stream: _homeController.naveListener.stream,
         builder: (context, AsyncSnapshot<int> snapshot) {
           int item = snapshot.data ?? 0;
-          return _screens[item];
+          return screenList[item];
         },
       ),
-      bottomNavigationBar: MyBottomNavigationBar(controller: _controller),
+      bottomNavigationBar: MyBottomNavigationBar(),
     );
   }
 }
