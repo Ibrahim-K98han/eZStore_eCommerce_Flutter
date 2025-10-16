@@ -23,7 +23,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: CustomImage(path: KImages.logoWithText, height: 30.h),
+        title: CustomImage(path: KImages.logoWithText, height: 32.h),
       ),
       backgroundColor: whiteColor,
       body: SingleChildScrollView(
@@ -78,16 +78,15 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 bottomSpace: 16.sp,
                 child: TextFormField(
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.zero,
-                      borderSide: BorderSide(
-                        color: greyColor.withOpacity(0.2),
-                        width: 0.5,
-                      ),
-                    ),
+                    // border: OutlineInputBorder(
+                    //   borderRadius: BorderRadius.zero,
+                    //   borderSide: BorderSide(
+                    //     color: greyColor.withOpacity(0.2),
+                    //     width: 0.5,
+                    //   ),
+                    // ),
 
-                    filled: true,
-                    fillColor: const Color(0xffF8FAFC),
+
                     hintText: 'codylee@gmail.com',
                   ),
                 ),
@@ -107,7 +106,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 },
               ),
               Utils.verticalSpace(12.h),
-              const Center(
+               Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -115,11 +114,19 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       text: 'Don’t have an account yet? ',
                       fontSize: 16,
                     ),
-                    CustomText(
-                      text: 'Resister',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      decoration: TextDecoration.underline,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteNames.authenticationWithPassScreen,
+                        );
+                      },
+                      child: CustomText(
+                        text: 'Resister',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                   ],
                 ),

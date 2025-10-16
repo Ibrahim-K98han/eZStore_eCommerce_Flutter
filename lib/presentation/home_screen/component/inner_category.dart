@@ -15,18 +15,19 @@ class InnerCategory extends StatelessWidget {
       child: Padding(
         padding: Utils.only(bottom: 0.h, left: 8.w, top: 12.h),
         child: SizedBox(
-          height: 210.h,
+          height: 200.h,
           child: GridView.builder(
+            padding: Utils.symmetric(h: 0.0, v: 0.0),
             scrollDirection: Axis.horizontal,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 6,
-              mainAxisSpacing: 10,
-             mainAxisExtent: 76.0,
+              crossAxisSpacing: 0.0,
+              mainAxisSpacing: 10.0,
+              mainAxisExtent: 70.0,
             ),
             itemCount: innerCategory.length,
             itemBuilder: (context, index) {
-              return CategoryCard(categoryItem: innerCategory[index],);
+              return CategoryCard(categoryItem: innerCategory[index]);
             },
           ),
         ),
@@ -57,7 +58,14 @@ class CategoryCard extends StatelessWidget {
           ),
         ),
         Utils.verticalSpace(6.h),
-        CustomText(text: categoryItem.name, fontSize: 9.sp, fontWeight: FontWeight.w500, maxLine: 2,textAlign: TextAlign.center,),
+        CustomText(
+          text: categoryItem.name,
+          fontSize: 9.sp,
+          fontWeight: FontWeight.w500,
+          maxLine: 2,
+          textAlign: TextAlign.center,
+          height: 1.0,
+        ),
       ],
     );
   }

@@ -27,7 +27,7 @@ class CustomFormWidget extends StatelessWidget {
         CustomText(
           text: label,
           fontSize: 14.sp,
-          color: Color(0xff334155),
+          color: sTextColor,
           fontWeight: FontWeight.w400,
         ),
         Utils.verticalSpace(4.h),

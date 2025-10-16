@@ -2,12 +2,14 @@ import 'package:ezstore/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../Data/dummy_data.dart';
 import '../../routes/route_names.dart';
 import '../../utils/constraints.dart';
 import '../../utils/k_images.dart';
 import '../../utils/utils.dart';
 import '../../widgets/custom_image.dart';
 import '../home_screen/component/category.dart';
+import '../home_screen/component/product_card_section.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -30,39 +32,30 @@ class _SearchScreenState extends State<SearchScreen> {
   final List<String> categoryOptions = ['All', 'Men', 'Women', 'Kids'];
   final List<String> sizeOptions = ['S', 'M', 'L', 'XL'];
 
-  // body: CustomScrollView(
-  // slivers: [
-  // SliverToBoxAdapter(
-  // child: SingleChildScrollView(
-  // scrollDirection: Axis.horizontal,
-  // child: Row(
-  // children: [
-  // // your filter + dropdowns
-  // ],
-  // ),
-  // ),
-  // ),
-  // Category(), // if Category returns a Sliver widget
-  // ],
-  // ),
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    double aspectRatio;
+    if (screenHeight < 800) {
+      aspectRatio = 0.72; // slightly taller cards for small screens
+    } else if (screenHeight < 900) {
+      aspectRatio = 0.74;
+    } else {
+      aspectRatio = 0.55;
+    }
     return Scaffold(
       appBar: AppBar(
         title: TextFormField(
           decoration: InputDecoration(
             filled: true,
             fillColor: greyLightColor,
-            contentPadding: EdgeInsets.symmetric(
-              vertical: 16.h,
-              horizontal: 16.w,
-            ),
             hintText: 'Search Products...',
             hintStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
             suffixIcon: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w),
-              child: Row(
+              child:   Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   CustomImage(
@@ -71,29 +64,24 @@ class _SearchScreenState extends State<SearchScreen> {
                     width: 24.w,
                     fit: BoxFit.cover,
                   ),
-                  SizedBox(width: 8.w),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, RouteNames.searchScreen);
-                    },
-                    child: Container(
-                      width: 50.w,
-                      padding: Utils.symmetric(h: 10.w, v: 8.h),
-                      decoration: BoxDecoration(
-                        color: secondaryColor,
-                        borderRadius: BorderRadius.circular(20.r),
-                      ),
-                      child: CustomImage(
-                        path: KImages.search,
-                        height: 24.h,
-                        width: 24.w,
-                      ),
+                  Utils.horizontalSpace(12.w),
+                  Container(
+                    width: 50.w,
+                    height: 36.h,
+                    padding: Utils.symmetric(h: 10.w, v: 8.h),
+                    decoration: BoxDecoration(
+                      color: secondaryColor,
+                      borderRadius: BorderRadius.circular(99.r),
+                    ),
+                    child: CustomImage(
+                      path: KImages.search,
+                      height: 24.h,
+                      width: 24.w,
                     ),
                   ),
                 ],
               ),
             ),
-
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50.r),
               borderSide: BorderSide.none,
@@ -109,65 +97,83 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 12.w,
-                      vertical: 10.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: greyLightColor,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: Row(
-                      children: [
-                        CustomImage(path: KImages.filter),
-                        SizedBox(width: 6.w),
-                        const Text(
-                          'Filters',
-                          style: TextStyle(fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
+      body: Padding(
+        padding: Utils.symmetric(h: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: Utils.symmetric(
+                    h: 12.w,
+                    v: 10.h,
                   ),
+                  decoration: BoxDecoration(
+                    color: greyLightColor,
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: Row(
+                    children: [
+                      CustomImage(path: KImages.filter),
+                      SizedBox(width: 6.w),
+                      CustomText(text: "Filter", fontWeight: FontWeight.w500,)
+                    ],
+                  ),
+                ),
 
-                  // Sort By
-                  _buildDropdown(
-                    hint: 'Sort by',
-                    value: sortBy,
-                    items: sortOptions,
-                    onChanged: (v) => setState(() => sortBy = v),
-                  ),
+                // Sort By
+                _buildDropdown(
+                  hint: 'Sort by',
+                  value: sortBy,
+                  items: sortOptions,
+                  onChanged: (v) => setState(() => sortBy = v),
+                ),
 
-                  // Category
-                  _buildDropdown(
-                    hint: 'Category',
-                    value: category,
-                    items: categoryOptions,
-                    onChanged: (v) => setState(() => category = v),
-                  ),
+                // Category
+                _buildDropdown(
+                  hint: 'Category',
+                  value: category,
+                  items: categoryOptions,
+                  onChanged: (v) => setState(() => category = v),
+                ),
 
-                  // Size
-                  _buildDropdown(
-                    hint: 'Size',
-                    value: size,
-                    items: sizeOptions,
-                    onChanged: (v) => setState(() => size = v),
-                  ),
-                ],
-              ),
+                // Size
+                _buildDropdown(
+                  hint: 'Size',
+                  value: size,
+                  items: sizeOptions,
+                  onChanged: (v) => setState(() => size = v),
+                ),
+              ],
             ),
           ),
           SearchCategory(),
-        ],
-      ),
+          Utils.verticalSpace(6.h),
+          CustomText(text: "Showing results for “Women's Clothing”", fontSize: 13.sp, fontWeight: FontWeight.w500,),
+          Utils.verticalSpace(6.h),
+          Expanded(
+            child: GridView.builder(
+              padding: Utils.all(value: 0.0),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 6,
+                mainAxisSpacing: 10,
+                childAspectRatio:aspectRatio, // Ad
+              ),
+              itemCount: productList.length,
+              itemBuilder: (context, index) {
+                final sale = productList[index];
+                return ProductCard(item: sale);
+              },
+            ),
+          ),
+            Utils.verticalSpace(10.h),
+        ],),
+      )
     );
   }
 
@@ -236,92 +242,71 @@ class _SearchCategoryState extends State<SearchCategory> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /// --- Category Tabs ---
-          SizedBox(
-            height: 42.h,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              itemCount: categories.length,
-              itemBuilder: (context, index) {
-                final item = categories[index];
-                final isSelected = selectedIndex == index;
-
-                return Padding(
-                  padding: EdgeInsets.only(right: 12.w),
-                  child: GestureDetector(
-                    onTap: () => setState(() => selectedIndex = index),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 250),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12.w,
-                        vertical: 10.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color:
-                            isSelected
-                                ? item['color'].withOpacity(0.08)
-                                : Colors.transparent,
-                        borderRadius: BorderRadius.circular(20.r),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(item['icon'], size: 20.sp, color: item['color']),
-                          SizedBox(width: 4.w),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CustomText(
-                                text: item['label'],
-                                fontSize: 11.sp,
-                                fontWeight: FontWeight.w500,
-                                color: isSelected ? item['color'] : blackColor,
-                              ),
-                              if (isSelected)
-                                Container(
-                                  width: 50.w,
-                                  height: 2.h,
-                                  decoration: BoxDecoration(
-                                    color: item['color'],
-                                    borderRadius: BorderRadius.circular(1.r),
-                                  ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        /// --- Category Tabs ---
+        SizedBox(
+          height: 50.h,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            itemBuilder: (context, index) {
+              final item = categories[index];
+              final isSelected = selectedIndex == index;
+              return Padding(
+                padding: EdgeInsets.only(right: 12.w),
+                child: GestureDetector(
+                  onTap: () => setState(() => selectedIndex = index),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                      vertical: 12.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color:
+                          isSelected
+                              ? item['color'].withOpacity(0.08)
+                              : Colors.transparent,
+                      borderRadius: BorderRadius.circular(50.r),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(item['icon'], size: 20.sp, color: item['color']),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CustomText(
+                              text: item['label'],
+                              fontSize: 11.sp,
+                              fontWeight: FontWeight.w500,
+                              color: isSelected ? item['color'] : blackColor,
+                            ),
+                            if (isSelected)
+                              Container(
+                                width: 50.w,
+                                height: 2.h,
+                                decoration: BoxDecoration(
+                                  color: item['color'],
+                                  borderRadius: BorderRadius.circular(1.r),
                                 ),
-                            ],
-                          ),
+                              ),
+                          ],
+                        ),
 
-                        ],
-                      ),
+                      ],
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
+        ),
 
-          /// --- Example content below tabs ---
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(vertical: 16.h),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, RouteNames.productDetailsScreen);
-              },
-              child: CustomText(
-                text: 'Home',
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w500,
-                color: primaryColor,
-              ),
-            ),
-          ),
-        ],
-      ),
+      ],
     );
   }
 }

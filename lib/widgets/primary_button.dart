@@ -36,7 +36,7 @@ class PrimaryButton extends StatelessWidget {
     if (isGradient) {
       return Container(
         decoration: BoxDecoration(
-          gradient: buttonGradient,
+         // gradient: buttonGradient,
           borderRadius: borderRadius,
         ),
         child: ElevatedButton(

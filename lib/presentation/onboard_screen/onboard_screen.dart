@@ -52,11 +52,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               children: [
                 _buildSkipButton(),
                 _buildImagesSlider(),
-                Utils.verticalSpace(size.height * 0.06),
+                Utils.verticalSpace(size.height * 0.05),
                 _buildContent(),
-                Utils.verticalSpace(24.0),
 
-                Utils.verticalSpace(40.0),
+                Utils.verticalSpace(32.h),
                 Padding(
                   padding: Utils.symmetric(),
                   child: Row(
@@ -138,15 +137,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         children: [
           CustomText(
             text: item.title,
-            fontSize: 24.0,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF111827),
+            fontSize: 24.sp,
+            fontWeight: FontWeight.w600,
+            color: tTextColor,
           ),
           Utils.verticalSpace(16.0),
           CustomText(
             text: item.subTitle,
-            color: Color(0xFF111827),
-
+            color: sTextColor,
+            fontSize: 16.sp,
           ),
         ],
       ),
@@ -195,8 +194,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             child: CustomText(
               text: 'Skip',
               fontWeight: FontWeight.w400,
-              fontSize: 18.sp,
-              color: blackColor,
+              fontSize: 16.sp,
+              color: textColor,
               textAlign: TextAlign.right,
             ),
           ),

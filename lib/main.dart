@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         // builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        initialRoute: RouteNames.mainScreen,
+        initialRoute: RouteNames.splashScreen,
         onGenerateRoute: RouteNames.generateRoutes,
         onUnknownRoute: (RouteSettings settings) {
           return MaterialPageRoute(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/constraints.dart';
@@ -75,13 +76,13 @@ class MyTheme {
         isDense: true,
         hintStyle: GoogleFonts.kumbhSans(
           fontWeight: FontWeight.w400,
-          fontSize: 16.0,
-          color: const Color(0xFFBABABA),
+          fontSize: 14.0,
+          color: const Color(0xFFCBD5E1),
         ),
         labelStyle: GoogleFonts.kumbhSans(
           fontWeight: FontWeight.w400,
-          fontSize: 16.0,
-          color: hintTextColor,
+          fontSize: 14.0,
+          color: sTextColor,
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 17.0, horizontal: 20.0),
         fillColor: const Color(0xFFF8FAFC),
@@ -90,15 +91,15 @@ class MyTheme {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.zero,
           borderSide: BorderSide(
-            color: greyColor.withOpacity(0.2),
-            width: 0.5,
+            color: borderColor,
+            width: 2.0,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.zero,
           borderSide: BorderSide(
-            color: greyColor.withOpacity(0.2),
-            width: 0.5,
+            color: borderColor,
+            width: 2.0,
           ),
         ),
       ),

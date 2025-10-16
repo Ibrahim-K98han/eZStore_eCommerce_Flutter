@@ -94,6 +94,7 @@ class KImages {
   static const String search = 'assets/icons/search.svg';
   static const String camera = 'assets/icons/camera.svg';
   static const String filter = 'assets/icons/filter.svg';
+  static const String headphone = 'assets/icons/headphone.svg';
   static const String backArrow = 'assets/icons/back_arrow.svg';
   static const String share = 'assets/icons/share.svg';
   static const String star = 'assets/icons/star.svg';
@@ -103,6 +104,11 @@ class KImages {
   static const String visa = 'assets/icons/visa.svg';
   static const String addNewCard = 'assets/icons/add_new_card.svg';
   static const String paypal = 'assets/icons/paypal.svg';
+  static const String paintBrush = 'assets/icons/paint_brush.svg';
+  static const String notificationIcon = 'assets/icons/notification_icon.svg';
+  static const String listviewRectangle = 'assets/icons/listview_rectangle.svg';
+  static const String wishlistFill = 'assets/icons/wishlist_fill.svg';
+  static const String deliverTruck = 'assets/icons/delivery_truck.svg';
 
 
   ///my order icon
@@ -142,6 +148,8 @@ class KImages {
   static const String closeIcon = 'assets/images/close_icon.png';
   static const String shoppingCart = 'assets/images/shoping_cart.png';
   static const String discountBanner = 'assets/images/discount_banner.png';
+  static const String notifications = 'assets/images/notification.png';
+  static const String discountTag = 'assets/images/discount_tag.png';
 
 
 
