@@ -21,7 +21,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       body: CustomScrollView(slivers:
       [
         HomeAppBar(),
@@ -34,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         SliverToBoxAdapter(child: Center(child: CustomText(text: "Only For You", fontSize: 12.sp,fontWeight: FontWeight.w600))),
         SliverToBoxAdapter(child: Utils.verticalSpace(8.h)),
         ProductCardSection(),
-        SliverToBoxAdapter(child: Utils.verticalSpace(70.h)),
+        SliverToBoxAdapter(child: Utils.verticalSpace(80.h)),
       ]),
     );
   }

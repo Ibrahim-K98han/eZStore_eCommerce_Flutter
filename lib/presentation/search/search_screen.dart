@@ -32,18 +32,21 @@ class _SearchScreenState extends State<SearchScreen> {
   final List<String> categoryOptions = ['All', 'Men', 'Women', 'Kids'];
   final List<String> sizeOptions = ['S', 'M', 'L', 'XL'];
 
-
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
-    double aspectRatio;
-    if (screenHeight < 800) {
-      aspectRatio = 0.72; // slightly taller cards for small screens
-    } else if (screenHeight < 900) {
-      aspectRatio = 0.74;
+    double cardHeight;
+    if (screenHeight >= 1000) {
+      cardHeight = 322.0; // Extra large screens (Pixel 9 Pro XL, etc.)
+    } else if (screenHeight >= 900) {
+      cardHeight = 240; // Large screens (Pixel 7 Pro, Pixel 8 Pro)
+    } else if (screenHeight >= 800) {
+      cardHeight = 246; // Medium-Large screens
+    } else if (screenHeight >= 700) {
+      cardHeight = 250; // Medium screens (Most common)
     } else {
-      aspectRatio = 0.55;
+      cardHeight = 250; // Small screens (720p devices)
     }
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +58,7 @@ class _SearchScreenState extends State<SearchScreen> {
             hintStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
             suffixIcon: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w),
-              child:   Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   CustomImage(
@@ -102,78 +105,88 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: Utils.symmetric(
-                    h: 12.w,
-                    v: 10.h,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteNames.shopFilterScreen);
+                    },
+                    child: Container(
+                      padding: Utils.symmetric(h: 12.w, v: 10.h),
+                      decoration: BoxDecoration(
+                        color: greyLightColor,
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: Row(
+                        children: [
+                          CustomImage(path: KImages.filter),
+                          SizedBox(width: 6.w),
+                          CustomText(
+                            text: "Filter",
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  decoration: BoxDecoration(
-                    color: greyLightColor,
-                    borderRadius: BorderRadius.circular(12.r),
+
+                  // Sort By
+                  _buildDropdown(
+                    hint: 'Sort by',
+                    value: sortBy,
+                    items: sortOptions,
+                    onChanged: (v) => setState(() => sortBy = v),
                   ),
-                  child: Row(
-                    children: [
-                      CustomImage(path: KImages.filter),
-                      SizedBox(width: 6.w),
-                      CustomText(text: "Filter", fontWeight: FontWeight.w500,)
-                    ],
+
+                  // Category
+                  _buildDropdown(
+                    hint: 'Category',
+                    value: category,
+                    items: categoryOptions,
+                    onChanged: (v) => setState(() => category = v),
                   ),
-                ),
 
-                // Sort By
-                _buildDropdown(
-                  hint: 'Sort by',
-                  value: sortBy,
-                  items: sortOptions,
-                  onChanged: (v) => setState(() => sortBy = v),
-                ),
-
-                // Category
-                _buildDropdown(
-                  hint: 'Category',
-                  value: category,
-                  items: categoryOptions,
-                  onChanged: (v) => setState(() => category = v),
-                ),
-
-                // Size
-                _buildDropdown(
-                  hint: 'Size',
-                  value: size,
-                  items: sizeOptions,
-                  onChanged: (v) => setState(() => size = v),
-                ),
-              ],
-            ),
-          ),
-          SearchCategory(),
-          Utils.verticalSpace(6.h),
-          CustomText(text: "Showing results for “Women's Clothing”", fontSize: 13.sp, fontWeight: FontWeight.w500,),
-          Utils.verticalSpace(6.h),
-          Expanded(
-            child: GridView.builder(
-              padding: Utils.all(value: 0.0),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 6,
-                mainAxisSpacing: 10,
-                childAspectRatio:aspectRatio, // Ad
+                  // Size
+                  _buildDropdown(
+                    hint: 'Size',
+                    value: size,
+                    items: sizeOptions,
+                    onChanged: (v) => setState(() => size = v),
+                  ),
+                ],
               ),
-              itemCount: productList.length,
-              itemBuilder: (context, index) {
-                final sale = productList[index];
-                return ProductCard(item: sale);
-              },
             ),
-          ),
+            SearchCategory(),
+            Utils.verticalSpace(6.h),
+            CustomText(
+              text: "Showing results for “Women's Clothing”",
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w500,
+            ),
+            Utils.verticalSpace(6.h),
+            Expanded(
+              child: GridView.builder(
+                padding: Utils.all(value: 0.0),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 6.w,
+                  mainAxisSpacing: 6.h,
+                  mainAxisExtent: cardHeight,
+                ),
+                itemCount: productList.length,
+                itemBuilder: (context, index) {
+                  final sale = productList[index];
+                  return ProductCard(item: sale);
+                },
+              ),
+            ),
             Utils.verticalSpace(10.h),
-        ],),
-      )
+          ],
+        ),
+      ),
     );
   }
 
@@ -184,7 +197,7 @@ class _SearchScreenState extends State<SearchScreen> {
     required void Function(String?) onChanged,
   }) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 4.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 8.w),
         decoration: BoxDecoration(
@@ -196,7 +209,7 @@ class _SearchScreenState extends State<SearchScreen> {
           value: value,
           hint: Text(hint, style: const TextStyle(fontWeight: FontWeight.w500)),
           underline: const SizedBox(),
-          icon: Icon(Icons.keyboard_arrow_down_rounded, size: 18.sp),
+          icon: Icon(Icons.keyboard_arrow_down_rounded, size: 12.sp),
           items:
               items
                   .map(
@@ -296,7 +309,6 @@ class _SearchCategoryState extends State<SearchCategory> {
                               ),
                           ],
                         ),
-
                       ],
                     ),
                   ),
@@ -305,7 +317,6 @@ class _SearchCategoryState extends State<SearchCategory> {
             },
           ),
         ),
-
       ],
     );
   }

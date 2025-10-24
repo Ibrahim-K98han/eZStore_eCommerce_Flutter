@@ -1,3 +1,4 @@
+import 'package:ezstore/utils/constraints.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,11 +12,13 @@ class ProfileMenuItem extends StatelessWidget {
     required this.img,
     required this.text,
     required this.onTap,
+     this.textColor = tTextColor,
   });
 
   final String img;
   final String text;
   final VoidCallback onTap;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +29,12 @@ class ProfileMenuItem extends StatelessWidget {
         child: Row(
           children: [
             CustomImage(path: img, width: 24.w, height: 24.h),
-            Utils.horizontalSpace(20.w),
-            CustomText(text: text, fontWeight: FontWeight.w500),
+            Utils.horizontalSpace(10.w),
+            CustomText(
+              text: text,
+              fontWeight: FontWeight.w500,
+              color: textColor,
+            ),
           ],
         ),
       ),

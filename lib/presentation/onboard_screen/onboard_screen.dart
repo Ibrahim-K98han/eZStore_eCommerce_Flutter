@@ -59,7 +59,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Padding(
                   padding: Utils.symmetric(),
                   child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       _buildDotIndicator(),
                       ElevatedButton(
@@ -68,7 +68,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             Navigator.pushNamedAndRemoveUntil(
                               context,
                               RouteNames.authenticationsScreen,
-                                  (route) => false,
+                              (route) => false,
                             );
                           } else {
                             _pageController.nextPage(
@@ -81,14 +81,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           minimumSize: Size(52, 52),
                           shape: const CircleBorder(),
                           padding: const EdgeInsets.all(16),
-                          backgroundColor: Color(0xFFE43131)
+                          backgroundColor: Color(0xFFE43131),
                         ),
                         child: const Icon(
                           Icons.arrow_forward, // or any icon you want
                           color: Colors.white,
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -130,7 +129,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget getContent() {
     final item = data[_currentPage];
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         key: ValueKey('$_currentPage'),
@@ -142,11 +141,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             color: tTextColor,
           ),
           Utils.verticalSpace(16.0),
-          CustomText(
-            text: item.subTitle,
-            color: sTextColor,
-            fontSize: 16.sp,
-          ),
+          CustomText(text: item.subTitle, color: sTextColor, fontSize: 16.sp),
         ],
       ),
     );
@@ -185,12 +180,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         GestureDetector(
           onTap:
               () => Navigator.pushNamedAndRemoveUntil(
-            context,
-            RouteNames.authenticationsScreen,
+                context,
+                RouteNames.authenticationsScreen,
                 (route) => false,
-          ),
-          child:  Padding(
-            padding:  EdgeInsets.only(right: 20.w, bottom: 20.h),
+              ),
+          child: Padding(
+            padding: EdgeInsets.only(right: 20.w, bottom: 20.h),
             child: CustomText(
               text: 'Skip',
               fontWeight: FontWeight.w400,

@@ -198,6 +198,59 @@ final List<WishList> wishlist = [
   ),
 ];
 
+class ShippingAddressList {
+  final String shippingAmount;
+  final String deliveryDate;
+  final String transitionRoute;
+  bool isFavorite;
+
+  ShippingAddressList({
+    required this.shippingAmount,
+    required this.deliveryDate,
+    required this.transitionRoute,
+    this.isFavorite = false,
+  });
+}
+
+final List<ShippingAddressList> shippingAddressList = [
+  ShippingAddressList(
+    shippingAmount: 'USD \$25.21',
+    deliveryDate: 'Dec, 12',
+    transitionRoute: 'via Turkey Air Mail',
+  ),
+  ShippingAddressList(
+    shippingAmount: 'USD \$15.00',
+    deliveryDate: 'Dec, 15',
+    transitionRoute: 'via FedEx',
+  ),
+  ShippingAddressList(
+    shippingAmount: 'USD \$30.50',
+    deliveryDate: 'Dec, 20',
+    transitionRoute: 'via DHL Express',
+  ),
+];
+
+class GiftCard {
+  final String img;
+  final String value;
+  final String price;
+
+  GiftCard({required this.img, required this.value, required this.price});
+}
+
+final List<GiftCard> giftCardList = [
+  GiftCard(img: KImages.gitCard, value: '80', price: '50'),
+  GiftCard(img: KImages.gift1, value: '60', price: '70'),
+  GiftCard(img: KImages.gift2, value: '70', price: '60'),
+  GiftCard(img: KImages.gift3, value: '70', price: '20'),
+  GiftCard(img: KImages.gift2, value: '40', price: '30'),
+  GiftCard(img: KImages.gift1, value: '70', price: '70'),
+  GiftCard(img: KImages.gitCard, value: '60', price: '40'),
+  GiftCard(img: KImages.gift3, value: '80', price: '70'),
+  GiftCard(img: KImages.gitCard, value: '60', price: '40'),
+  GiftCard(img: KImages.gift3, value: '80', price: '70'),
+];
+
 class OrderItem {
   final String status;
   final String date;
@@ -260,5 +313,53 @@ final List<OrderItem> orders = [
     image: KImages.product3,
     trackingText: 'Click to check tracking details',
     estimatedDelivery: 'Oct 23, 2025',
+  ),
+];
+
+class TransitEvent {
+  final String title;
+  final String timestamp;
+  final bool isActive;
+
+  TransitEvent({
+    required this.title,
+    required this.timestamp,
+    this.isActive = false,
+  });
+}
+
+final events = [
+  TransitEvent(
+    title: 'Your package arrived at local airport',
+    timestamp: 'Sep 30, 16 GMT+06:00',
+    isActive: true,
+  ),
+  TransitEvent(
+    title: 'Package left transit country/region',
+    timestamp: 'Sep 30, 14:16 GMT+06:00',
+  ),
+  TransitEvent(
+    title: 'Package left transit country/region',
+    timestamp: 'Sep 30, 14:16 GMT+06:00',
+  ),
+  TransitEvent(
+    title: 'Package in transit country/region',
+    timestamp: 'Sep 30, 14:16 GMT+06:00',
+  ),
+  TransitEvent(
+    title: 'Package left transit country/region',
+    timestamp: 'Sep 30, 14:16 GMT+06:00',
+  ),
+  TransitEvent(
+    title: 'Package left transit country/region',
+    timestamp: 'Sep 30, 14:16 GMT+06:00',
+  ),
+  TransitEvent(
+    title: 'Package in transit country/region',
+    timestamp: 'Sep 30, 14:16 GMT+06:00',
+  ),
+  TransitEvent(
+    title: 'Package left transit country/region',
+    timestamp: 'Sep 30, 14:16 GMT+06:00',
   ),
 ];

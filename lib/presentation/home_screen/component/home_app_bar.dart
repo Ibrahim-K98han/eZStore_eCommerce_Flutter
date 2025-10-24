@@ -1,6 +1,6 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../routes/route_names.dart';
 import '../../../utils/constraints.dart';
 import '../../../utils/k_images.dart';
@@ -14,17 +14,21 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    double height;
-    if (screenHeight < 800) {
-      height = 154; // slightly taller cards for small screens
-    } else if (screenHeight < 900) {
-      height = 150;
+    double cardHeight;
+    if (screenHeight >= 1000) {
+      cardHeight = 150.h; // Extra large screens (Pixel 9 Pro XL, etc.)
+    } else if (screenHeight >= 900) {
+      cardHeight = 146.h; // Large screens (Pixel 7 Pro, Pixel 8 Pro)
+    } else if (screenHeight >= 800) {
+      cardHeight = 158.h; // Medium-Large screens
+    } else if (screenHeight >= 700) {
+      cardHeight = 140.h; // Medium screens (Most common)
     } else {
-      height = 130;
+      cardHeight = 140.h; // Small screens (720p devices)
     }
     return SliverAppBar(
       automaticallyImplyLeading: false,
-      toolbarHeight: Utils.vSize(height.h),
+      toolbarHeight: Utils.vSize(cardHeight),
       backgroundColor: transparent,
       pinned: true,
       flexibleSpace: Stack(
@@ -86,12 +90,36 @@ class HomeAppBar extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.of(context, rootNavigator: true).pushNamed(RouteNames.notificationScreen);
+                  onTap: () {
+                    Navigator.of(
+                      context,
+                      rootNavigator: true,
+                    ).pushNamed(RouteNames.notificationScreen);
                   },
-                  child: _borderContainer(
-                    const CustomImage(path: KImages.notification, height: 26.0),
+                  child: badges.Badge(
+                    position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                    showBadge: true,
+                    ignorePointer: false,
+                    onTap: () {},
+                    badgeContent: CustomText(
+                      text: '1',
+                      color: whiteColor,
+                      fontSize: 12.sp,
+                    ),
+                    badgeAnimation: badges.BadgeAnimation.rotation(
+                      animationDuration: Duration(seconds: 1),
+                      colorChangeAnimationDuration: Duration(seconds: 1),
+                      loopAnimation: false,
+                      curve: Curves.fastOutSlowIn,
+                      colorChangeAnimationCurve: Curves.easeInCubic,
+                    ),
+
+                    child: CustomImage(path: KImages.notificationss),
                   ),
+
+                  // _borderContainer(
+                  //   const CustomImage(path: KImages.notification, height: 26.0),
+                  // ),
                 ),
               ],
             ),
@@ -103,8 +131,11 @@ class HomeAppBar extends StatelessWidget {
             right: 20.w,
             bottom: 10.h,
             child: GestureDetector(
-              onTap: (){
-                Navigator.of(context, rootNavigator: true).pushNamed(RouteNames.searchScreen);
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.searchScreen);
               },
               child: Container(
                 height: 44.h,

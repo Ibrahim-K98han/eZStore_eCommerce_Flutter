@@ -1,6 +1,6 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../routes/route_names.dart';
 import '../../../utils/constraints.dart';
 import '../../../utils/k_images.dart';
@@ -97,14 +97,14 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                                       child: Center(
                                         child: Text(
                                           entry.value['flag']!,
-                                          style:  TextStyle(fontSize: 18.sp),
+                                          style: TextStyle(fontSize: 18.sp),
                                         ),
                                       ),
                                     ),
-                                     SizedBox(width: 8.w),
+                                    SizedBox(width: 8.w),
                                     Text(
                                       entry.value['name']!,
-                                      style:  TextStyle(
+                                      style: TextStyle(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -131,7 +131,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                                   child: Center(
                                     child: Text(
                                       entry.value['flag']!,
-                                      style:  TextStyle(fontSize: 18.sp),
+                                      style: TextStyle(fontSize: 18.sp),
                                     ),
                                   ),
                                 ),
@@ -143,8 +143,13 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                     ),
                     Utils.horizontalSpace(10.w),
                     GestureDetector(
-                      onTap: () {},
-                      child:  CustomImage(
+                      onTap: () {
+                        Navigator.of(
+                          context,
+                          rootNavigator: true,
+                        ).pushNamed(RouteNames.settingsScreen);
+                      },
+                      child: CustomImage(
                         path: KImages.setting,
                         height: 26.h,
                         width: 26.w,
@@ -158,11 +163,32 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                           rootNavigator: true,
                         ).pushNamed(RouteNames.notificationScreen);
                       },
-                      child:  CustomImage(
-                        path: KImages.notification,
-                        height: 26.h,
-                        width: 26.w,
+                      child: badges.Badge(
+                        position: badges.BadgePosition.topEnd(
+                          top: -10,
+                          end: -12,
+                        ),
+                        showBadge: true,
+                        ignorePointer: false,
+                        onTap: () {},
+                        badgeContent: CustomText(
+                          text: '1',
+                          color: whiteColor,
+                          fontSize: 12.sp,
+                        ),
+                        badgeAnimation: badges.BadgeAnimation.rotation(
+                          animationDuration: Duration(seconds: 1),
+                          colorChangeAnimationDuration: Duration(seconds: 1),
+                          loopAnimation: false,
+                          curve: Curves.fastOutSlowIn,
+                          colorChangeAnimationCurve: Curves.easeInCubic,
+                        ),
+                        child: CustomImage(path: KImages.notificationss),
                       ),
+
+                      // _borderContainer(
+                      //   const CustomImage(path: KImages.notification, height: 26.0),
+                      // ),
                     ),
                   ],
                 ),

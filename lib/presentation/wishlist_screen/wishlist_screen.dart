@@ -21,61 +21,66 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        appBar: AppBar(
-          toolbarHeight: 100, // 👈 increase AppBar height for top padding
-          titleSpacing: 0,   // optional: remove default side spacing
-          backgroundColor: Colors.white, // optional: customize background
-          title: Padding(
-            padding: const EdgeInsets.only(top: 12.0), // 👈 top padding for title
-            child: CustomText(
-              text: "WishList",
-              fontSize: 16.sp, // optional: style customization
-              fontWeight: FontWeight.w500,
-            ),
+      appBar: AppBar(
+        toolbarHeight: 100, // 👈 increase AppBar height for top padding
+        titleSpacing: 0, // optional: remove default side spacing
+        backgroundColor: Colors.white, // optional: customize background
+        title: Padding(
+          padding: const EdgeInsets.only(top: 12.0), // 👈 top padding for title
+          child: CustomText(
+            text: "WishList",
+            fontSize: 16.sp, // optional: style customization
+            fontWeight: FontWeight.w500,
           ),
+        ),
 
-          actions: [
-            GestureDetector(
-              onTap: (){
+        actions: [
+          GestureDetector(
+            onTap: () {
               Navigator.of(
                 context,
                 rootNavigator: true,
               ).pushNamed(RouteNames.wishlistWithSelectScreen);
-              },
-              child: Padding(
-                padding: Utils.only(right: 16.w, top: 12.0),// 👈 match top padding
-                child: CustomImage(
-                  path: KImages.listviewRectangle,
-                  height: 24, // optional: control icon size
-                  width: 24,
-                ),
+            },
+            child: Padding(
+              padding: Utils.only(
+                right: 16.w,
+                top: 12.0,
+              ), // 👈 match top padding
+              child: CustomImage(
+                path: KImages.listviewRectangle,
+                height: 24, // optional: control icon size
+                width: 24,
               ),
             ),
-          ],
-        ),
-
-        body:Column(children: [
-        Expanded(
-          child: ListView.builder(
-            padding: Utils.symmetric(h: 16.0),
-            itemCount: wishlist.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: Utils.only(bottom: 12.h),
-                child: WishListCard(
-                  wishList: wishlist[index],
-                  onFavoriteToggle: () {
-                    setState(() {
-                      wishlist[index].isFavorite = !wishlist[index].isFavorite;
-                    });
-                  },
-                ),
-              );
-            },
           ),
-        ),
-      ],)
+        ],
+      ),
+
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              padding: Utils.symmetric(h: 16.0),
+              itemCount: wishlist.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: Utils.only(bottom: 12.h),
+                  child: WishListCard(
+                    wishList: wishlist[index],
+                    onFavoriteToggle: () {
+                      setState(() {
+                        wishlist[index].isFavorite =
+                            !wishlist[index].isFavorite;
+                      });
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -144,7 +149,6 @@ class WishListCard extends StatelessWidget {
               ),
             ),
           ],
-
         ),
         Utils.horizontalSpace(12.w),
         Expanded(

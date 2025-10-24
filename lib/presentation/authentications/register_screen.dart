@@ -1,6 +1,7 @@
+import 'package:ezstore/presentation/authentications/component/shipping_returans_widget.dart';
+import 'package:ezstore/presentation/authentications/component/social_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../../../utils/constraints.dart';
 import '../../../utils/k_images.dart';
 import '../../../utils/utils.dart';
@@ -20,7 +21,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+   
     return Scaffold(
       appBar: AppBar(
         title: CustomImage(path: KImages.logoWithText, height: 32.h),
@@ -40,38 +41,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 fontWeight: FontWeight.w500,
               ),
               Utils.verticalSpace(12.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(8.r),
-                        decoration: BoxDecoration(
-                          color: Color(0xffFEF7F7),
-                          borderRadius: BorderRadius.circular(50.r),
-                        ),
-                        child: CustomImage(path: KImages.delivery),
-                      ),
-                      CustomText(text: 'Free Shipping'),
-                    ],
-                  ),
-                  Utils.horizontalSpace(30.w),
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(8.r),
-                        decoration: BoxDecoration(
-                          color: Color(0xffFEF7F7),
-                          borderRadius: BorderRadius.circular(50.r),
-                        ),
-                        child: CustomImage(path: KImages.deliveryReturn),
-                      ),
-                      CustomText(text: '7 Day Returns'),
-                    ],
-                  ),
-                ],
-              ),
+
+              ShippingReturansWidget(),
+
               Utils.verticalSpace(24.h),
               CustomFormWidget(
                 label: 'Email or Phone Number',
@@ -123,9 +95,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
               Utils.verticalSpace(12.h),
               PrimaryButton(
-                bgColor: Color(0xff111827),
+                bgColor: textColor,
                 borderRadiusSize: 0,
-                text: "Regsister",
+                minimumSize: Size(double.infinity, 44),
+                text: "Register",
                 fontSize: 14.sp,
                 onPressed: () {
                   Navigator.pushNamed(
@@ -268,46 +241,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ],
         ),
       ],
-    );
-  }
-}
-
-class SocialBtn extends StatelessWidget {
-  const SocialBtn({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SocialItem(icon: KImages.google),
-        SocialItem(icon: KImages.facebook),
-        SocialItem(icon: KImages.apple),
-      ],
-    );
-  }
-}
-
-class SocialItem extends StatelessWidget {
-  const SocialItem({super.key, required this.icon});
-
-  final String icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 50.h,
-      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: whiteColor,
-        borderRadius: BorderRadius.circular(0),
-        border: Border.all(color: const Color(0xFF040415).withOpacity(0.1)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [SvgPicture.asset(icon), Utils.horizontalSpace(10)],
-      ),
     );
   }
 }
