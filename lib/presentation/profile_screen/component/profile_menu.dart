@@ -1,5 +1,6 @@
 import 'package:ezstore/presentation/profile_screen/component/profile_menu_item.dart';
 import 'package:ezstore/routes/route_names.dart';
+import 'package:ezstore/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,14 +21,33 @@ class ProfileMenu extends StatelessWidget {
               img: KImages.payment,
               text: 'Payment',
             ),
-            ProfileMenuItem(onTap: () {}, img: KImages.coupon, text: 'Coupons'),
             ProfileMenuItem(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.couponsScreen);
+              },
+              img: KImages.coupon,
+              text: 'Coupons',
+            ),
+            ProfileMenuItem(
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.giftAndWalletScreen);
+              },
               img: KImages.gift,
               text: 'Wallet & Gift Card',
             ),
             ProfileMenuItem(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.historyScreen);
+              },
               img: KImages.history,
               text: 'History',
             ),
@@ -42,25 +62,67 @@ class ProfileMenu extends StatelessWidget {
               text: 'My Orders',
             ),
             ProfileMenuItem(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.supportTicketScreen);
+              },
               img: KImages.support,
               text: 'Support Ticket',
             ),
             ProfileMenuItem(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.shippingMethodScreen);
+              },
+              img: KImages.support,
+              text: 'Shipping Method',
+            ),
+            ProfileMenuItem(
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.shippingAddressScreen);
+              },
+              img: KImages.support,
+              text: 'Shipping Address',
+            ),
+            ProfileMenuItem(
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.termsAndConditionScreen);
+              },
               img: KImages.termsAndCondition,
               text: 'Terms & Condition',
             ),
+
             ProfileMenuItem(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.privacyPolicyScreen);
+              },
               img: KImages.privacyPolicy,
               text: 'Privacy Policy',
             ),
             ProfileMenuItem(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(RouteNames.appInfoScreen);
+              },
               img: KImages.appInfos,
               text: 'App info',
             ),
+            Utils.verticalSpace(70),
           ],
         ),
       ),

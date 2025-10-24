@@ -2,19 +2,16 @@ name: ezstore
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
   sdk: ^3.7.2
 
-
 dependencies:
   flutter:
     sdk: flutter
-
 
   cupertino_icons: ^1.0.8
   flutter_screenutil: ^5.9.3
@@ -26,8 +23,9 @@ dependencies:
   fluttertoast: ^8.2.8
   intl_phone_number_input: ^0.7.5
   pinput: ^5.0.2
-
+  dotted_border: ^3.1.0
   persistent_bottom_nav_bar_v2: ^6.1.0
+  badges: ^3.1.2
 
   carousel_slider: ^5.1.1
   smooth_page_indicator: ^1.2.1
@@ -35,11 +33,12 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   rename: ^3.1.0
   flutter_launcher_icons: ^0.14.4
+  step_tracker: ^1.1.0
+  flutter_widget_from_html_core: ^0.16.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
   flutter_lints: ^5.0.0
 
@@ -48,8 +47,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
-
   uses-material-design: true
 
   assets:
@@ -60,9 +57,7 @@ flutter:
     - assets/product/
     - assets/my_orders/
     - assets/profile_menu/
-
-
-
+    - assets/settings/
 
 flutter_launcher_icons:
   android: "launcher_icon"

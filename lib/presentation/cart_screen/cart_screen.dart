@@ -22,7 +22,7 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100, // 👈 increase AppBar height for top padding
-        titleSpacing: 0,   // optional: remove default side spacing
+        titleSpacing: 0, // optional: remove default side spacing
         backgroundColor: Colors.white, // optional: customize background
         title: Padding(
           padding: const EdgeInsets.only(top: 12.0), // 👈 top padding for title
@@ -35,14 +35,17 @@ class _CartScreenState extends State<CartScreen> {
 
         actions: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.of(
                 context,
                 rootNavigator: true,
               ).pushNamed(RouteNames.allCartScreen);
             },
             child: Padding(
-              padding: Utils.only(right: 16.w, top: 12.0),// 👈 match top padding
+              padding: Utils.only(
+                right: 16.w,
+                top: 12.0,
+              ), // 👈 match top padding
               child: CustomImage(
                 path: KImages.listviewRectangle,
                 height: 24, // optional: control icon size
@@ -120,7 +123,7 @@ class _CartCardState extends State<CartCard> {
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
-                          padding: Utils.symmetric(v: 2.h,h: 2.w),
+                          padding: Utils.symmetric(v: 2.h, h: 2.w),
                           value: selectedColor,
                           isDense: true,
                           icon: Icon(
@@ -138,21 +141,21 @@ class _CartCardState extends State<CartCard> {
                             }
                           },
                           items:
-                          colors.keys.map((String colorName) {
-                            return DropdownMenuItem<String>(
-                              value: colorName,
-                              child: Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 10.r,
-                                    backgroundColor: colors[colorName],
+                              colors.keys.map((String colorName) {
+                                return DropdownMenuItem<String>(
+                                  value: colorName,
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 10.r,
+                                        backgroundColor: colors[colorName],
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(colorName),
+                                    ],
                                   ),
-                                  const SizedBox(width: 4),
-                                  Text(colorName),
-                                ],
-                              ),
-                            );
-                          }).toList(),
+                                );
+                              }).toList(),
                         ),
                       ),
                     ),
@@ -190,26 +193,44 @@ class _CartCardState extends State<CartCard> {
                           width: 28.h,
                           decoration: BoxDecoration(
                             color: borderColor.withOpacity(0.1),
-                            border: Border.all(color: textColor.withOpacity(0.2)),
+                            border: Border.all(
+                              color: textColor.withOpacity(0.2),
+                            ),
                           ),
-                          child: Center(child: CustomImage(path: KImages.trash, height: 14.h,)),
+                          child: Center(
+                            child: CustomImage(
+                              path: KImages.trash,
+                              height: 14.h,
+                            ),
+                          ),
                         ),
                         Container(
                           height: 28.h,
                           width: 28.h,
                           decoration: BoxDecoration(
-                            border: Border.all(color: textColor.withOpacity(0.2)),
+                            border: Border.all(
+                              color: textColor.withOpacity(0.2),
+                            ),
                           ),
-                          child: Center(child: CustomText(text: '1', fontSize: 12.sp)),
+                          child: Center(
+                            child: CustomText(text: '1', fontSize: 12.sp),
+                          ),
                         ),
                         Container(
                           height: 28.h,
                           width: 28.h,
                           decoration: BoxDecoration(
                             color: borderColor.withOpacity(0.1),
-                            border: Border.all(color: textColor.withOpacity(0.2)),
+                            border: Border.all(
+                              color: textColor.withOpacity(0.2),
+                            ),
                           ),
-                          child: Center(child: CustomImage(path: KImages.plus, height: 16.h)),
+                          child: Center(
+                            child: CustomImage(
+                              path: KImages.plus,
+                              height: 16.h,
+                            ),
+                          ),
                         ),
                       ],
                     ),

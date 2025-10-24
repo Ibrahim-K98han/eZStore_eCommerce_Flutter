@@ -32,7 +32,7 @@ class CustomDropdownButton<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonFormField<T>(
       value: value,
-      hint: CustomText(text: '--Select $hintText--',fontWeight: FontWeight.w500,fontSize: 12.0),
+      hint: CustomText(text: hintText,fontSize: 14.0,color: sTextColor,),
       isDense: true,
       isExpanded: true,
       icon: const Icon(Icons.keyboard_arrow_down),
@@ -43,19 +43,19 @@ class CustomDropdownButton<T> extends StatelessWidget {
             borderSide: BorderSide(color: borderColor)
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: Utils.borderRadius(r: 4.0),
-          borderSide: BorderSide(color: dBorderColor ?? primaryColor),
+          borderRadius: Utils.borderRadius(r: 0.0),
+          borderSide: BorderSide(color: transparent ?? primaryColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: Utils.borderRadius(r: 4.0),
-            borderSide: BorderSide(color: borderColor)
+            borderSide: BorderSide(color: transparent)
         ),
         fillColor: dFillColor ?? const Color(0xFFF8FAFC),
         filled: true,
-        focusColor: primaryColor,
+        focusColor: borderColor,
       ),
       dropdownColor: dropdownColor ?? whiteColor,
-      borderRadius: Utils.borderRadius(r: 4.0),
+      borderRadius: Utils.borderRadius(r: 0.0),
       onChanged: onChanged,
       items: items?.map((T item) {
         return DropdownMenuItem<T>(

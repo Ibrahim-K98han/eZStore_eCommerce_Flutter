@@ -124,11 +124,10 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
             Utils.verticalSpace(6.h),
             ...List.generate(
               4,
-                  (index) =>
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 12.h),
-                    child: CartWidget(),
-                  ),
+              (index) => Padding(
+                padding: EdgeInsets.only(bottom: 12.h),
+                child: CartWidget(),
+              ),
             ),
             CustomText(text: 'Payment Method', fontWeight: FontWeight.w500),
             Utils.verticalSpace(8.h),
@@ -262,7 +261,7 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500.h,
+      height: 400.h,
       padding: Utils.symmetric(h: 16.0, v: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -304,10 +303,15 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
               Positioned(
                 right: 0,
                 top: 0,
-                child: CustomImage(
-                  path: KImages.closeIcon,
-                  width: 32.w,
-                  height: 32.h,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: CustomImage(
+                    path: KImages.closeIcon,
+                    width: 32.w,
+                    height: 32.h,
+                  ),
                 ),
               ),
             ],
@@ -403,7 +407,7 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
               SwitchWidget(initialValue: false, onToggle: (value) {}),
             ],
           ),
-
+          Utils.verticalSpace(20),
           PrimaryButton(
             bgColor: secondaryColor,
             borderRadiusSize: 0.r,
@@ -421,7 +425,7 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                       borderRadius: BorderRadius.circular(0.r),
                     ),
                     child: Padding(
-                      padding: Utils.symmetric(h: 10.w,v: 12.h),
+                      padding: Utils.symmetric(h: 10.w, v: 12.h),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -473,7 +477,9 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                                     ),
                                     child: Center(
                                       child: CustomText(
-                                        text: 'Track Order', fontSize: 11.sp,),
+                                        text: 'Track Order',
+                                        fontSize: 11.sp,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -482,18 +488,21 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                               Expanded(
                                 child: GestureDetector(
                                   onTap: () {
-                                   Navigator.pop(context);
+                                    Navigator.pop(context);
                                   },
                                   child: Container(
                                     width: 140.w,
                                     height: 44.h,
                                     decoration: BoxDecoration(
                                       color: Colors.black,
-                                 //     border: Border.all(color: borderColor),
+                                      //     border: Border.all(color: borderColor),
                                     ),
                                     child: Center(
                                       child: CustomText(
-                                        text: 'Continue', fontSize: 11.sp,color: whiteColor),
+                                        text: 'Continue',
+                                        fontSize: 11.sp,
+                                        color: whiteColor,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -577,7 +586,9 @@ class CartWidget extends StatelessWidget {
                           color: borderColor.withOpacity(0.1),
                           border: Border.all(color: textColor.withOpacity(0.2)),
                         ),
-                        child: Center(child: CustomImage(path: KImages.trash, height: 14.h,)),
+                        child: Center(
+                          child: CustomImage(path: KImages.trash, height: 14.h),
+                        ),
                       ),
                       Container(
                         height: 28.h,
@@ -585,7 +596,9 @@ class CartWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                           border: Border.all(color: textColor.withOpacity(0.2)),
                         ),
-                        child: Center(child: CustomText(text: '1', fontSize: 12.sp)),
+                        child: Center(
+                          child: CustomText(text: '1', fontSize: 12.sp),
+                        ),
                       ),
                       Container(
                         height: 28.h,
@@ -594,7 +607,9 @@ class CartWidget extends StatelessWidget {
                           color: borderColor.withOpacity(0.1),
                           border: Border.all(color: textColor.withOpacity(0.2)),
                         ),
-                        child: Center(child: CustomImage(path: KImages.plus, height: 16.h)),
+                        child: Center(
+                          child: CustomImage(path: KImages.plus, height: 16.h),
+                        ),
                       ),
                     ],
                   ),
@@ -748,9 +763,9 @@ class _SwitchWidgetState extends State<SwitchWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Utils.only(bottom: 12),
+      padding: Utils.only(bottom: 0),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 0.h),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(6.r),
@@ -760,12 +775,6 @@ class _SwitchWidgetState extends State<SwitchWidget> {
           children: [
             Row(
               children: [
-                // CustomImage(
-                //   path: widget.icon,
-                //   width: 24,
-                //   height: 24,
-                //   fit: BoxFit.cover,
-                // ),
                 Utils.horizontalSpace(12),
                 CustomText(
                   text: widget.text ?? '',
@@ -787,17 +796,20 @@ class _SwitchWidgetState extends State<SwitchWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      color: isOn ? textColor : Colors.grey.shade100,
+                      color:
+                          isOn
+                              ? secondaryColor.withOpacity(0.1)
+                              : Colors.grey.shade100,
                     ),
                     child: AnimatedAlign(
                       duration: const Duration(milliseconds: 100),
                       alignment:
-                      isOn ? Alignment.centerRight : Alignment.centerLeft,
+                          isOn ? Alignment.centerRight : Alignment.centerLeft,
                       child: Container(
                         width: 22,
                         height: 22,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
+                        decoration: BoxDecoration(
+                          color: isOn ? secondaryColor : whiteColor,
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(

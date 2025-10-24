@@ -24,6 +24,10 @@ const greyLightColor = Color(0xFFF8FAFC);
 const sliderBgColor = Color(0xFFD6CFC8);
 const borderColor = Color(0xFFF1F5F9);
 const textGreyColor = Color(0xFF475569);
+const inActiveColor = Color(0xFF64748B);
+const btnBorderColor = Color(0xFF758192);
+const snowPink = Color(0xFFFEF7F7);
+const snowPinkBold = Color(0xFFFFD3D3);
 
 const kDuration = Duration(microseconds: 300);
 

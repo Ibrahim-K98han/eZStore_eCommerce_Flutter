@@ -9,8 +9,6 @@ class KImages {
   static const String onBoarding3 = 'assets/images/splash_3.jpg';
   static const String onBoarding4 = 'assets/images/splash_4.jpg';
 
-
-
   ///BottomNavbar
   static const String homeActive = 'assets/icons/home_active.svg';
   static const String homeInactive = 'assets/icons/home_inactive.svg';
@@ -22,15 +20,13 @@ class KImages {
   static const String profileInactive = 'assets/icons/profile_inactive.svg';
   static const String cart = 'assets/icons/cart.svg';
 
-
-
   /// Icon
   static const String arrowLeft = 'assets/icons/arrow-left.svg';
   static const String dialogIcon = 'assets/icons/dialog_icon.svg';
   static const String flash = 'assets/icons/flash.svg';
   static const String hot = 'assets/icons/hot.svg';
   static const String arrowRight = 'assets/icons/arrow_right.svg';
-  static const String reviewStar = 'assets/icons/star.svg';
+  static const String reviewStar = 'assets/icons/Star.svg';
 
   static const String filterIcon = 'assets/icons/filter 01.svg';
   static const String searchIcon = 'assets/icons/search_icon.svg';
@@ -87,7 +83,8 @@ class KImages {
   static const String google = 'assets/icons/google.svg';
   static const String facebook = 'assets/icons/facebook.svg';
   static const String apple = 'assets/icons/apple.svg';
-  static const String verifyPhoneNumber = 'assets/icons/verify_phone_number.svg';
+  static const String verifyPhoneNumber =
+      'assets/icons/verify_phone_number.svg';
   static const String forgotPass = 'assets/icons/forgot_pass.svg';
   static const String createNewPass = 'assets/icons/create_new_pass.svg';
   static const String notification = 'assets/icons/notification.svg';
@@ -109,7 +106,14 @@ class KImages {
   static const String listviewRectangle = 'assets/icons/listview_rectangle.svg';
   static const String wishlistFill = 'assets/icons/wishlist_fill.svg';
   static const String deliverTruck = 'assets/icons/delivery_truck.svg';
-
+  static const String addressHome = 'assets/icons/address_home.svg';
+  static const String edits = 'assets/icons/edit.svg';
+  static const String sale = 'assets/icons/sale.svg';
+  static const String shoppingCarts = 'assets/icons/shopping_cart.svg';
+  static const String imageAdd = 'assets/icons/image_add.svg';
+  static const String smileImoje = 'assets/icons/smile_imoje.svg';
+  static const String attach = 'assets/icons/attach.svg';
+  static const String sent = 'assets/icons/sent.svg';
 
   ///my order icon
   static const String returan = 'assets/my_orders/returan.svg';
@@ -118,6 +122,20 @@ class KImages {
   static const String toReview = 'assets/my_orders/to_review.svg';
   static const String toShip = 'assets/my_orders/to_ship.svg';
 
+  ///Settings Icon
+  static const String currency = 'assets/settings/currency.svg';
+  static const String deleteAccount = 'assets/settings/delete_account.svg';
+  static const String deviceManagement =
+      'assets/settings/device_management.svg';
+  static const String inviteFriend = 'assets/settings/invite_friend.svg';
+  static const String languages = 'assets/settings/language.svg';
+  static const String logouts = 'assets/settings/logout.svg';
+  static const String myReview = 'assets/settings/my_review.svg';
+  static const String notificationss = 'assets/settings/notification.svg';
+  static const String passwordChange = 'assets/settings/password_change.svg';
+  static const String rateEzstore = 'assets/settings/rate_ezstore.svg';
+  static const String users = 'assets/settings/user.svg';
+  static const String location = 'assets/settings/location.svg';
 
   ///Profile Menu Icon
   static const String appInfos = 'assets/profile_menu/app_info.svg';
@@ -128,9 +146,6 @@ class KImages {
   static const String privacyPolicy = 'assets/profile_menu/privacy_policy.svg';
   static const String support = 'assets/profile_menu/support.svg';
   static const String termsAndCondition = 'assets/profile_menu/terms.svg';
-
-
-
 
   static const String logoText = 'assets/images/logo_text.png';
   static const String onboardOne = 'assets/images/onboard_one.png';
@@ -150,22 +165,26 @@ class KImages {
   static const String discountBanner = 'assets/images/discount_banner.png';
   static const String notifications = 'assets/images/notification.png';
   static const String discountTag = 'assets/images/discount_tag.png';
-
-
-
-
+  static const String donate = 'assets/images/donate.png';
+  static const String giftBg = 'assets/images/gift_bg.png';
+  static const String gitCard = 'assets/images/git_card.png';
+  static const String gift1 = 'assets/images/gift1.png';
+  static const String gift2 = 'assets/images/gift2.png';
+  static const String gift3 = 'assets/images/gift3.png';
+  static const String message = 'assets/images/message.png';
+  static const String calls = 'assets/images/call.png';
+  static const String web = 'assets/images/web.png';
+  static const String gallery = 'assets/images/gallery.png';
+  static const String deviceDelete = 'assets/images/device_delete.png';
 
   // /// payment
   // static const String paypal = 'assets/images/paypal.png';
-
 
   static const String kNetworkImage = "https://picsum.photos/320";
   static const String placeholderImage = 'assets/images/placeholder-image.png';
 
   /// image
   static const String bannerImage = "assets/images/banner_image.png";
-
-
 
   /// Inner Category Image
   static const String health = "assets/category/health.png";
@@ -178,8 +197,7 @@ class KImages {
   static const String mens = "assets/category/mens.png";
   static const String homeLiving = "assets/category/home.png";
 
-
-/// product Image
+  /// product Image
   static const String product1 = "assets/product/product1.png";
   static const String product2 = "assets/product/product2.png";
   static const String product3 = "assets/product/product3.png";

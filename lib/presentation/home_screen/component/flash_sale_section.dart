@@ -11,7 +11,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class FlashSaleSection extends StatelessWidget {
   const FlashSaleSection({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -58,7 +57,7 @@ class FlashSaleSection extends StatelessWidget {
                       final sale = flashSales[index];
                       return Padding(
                         padding: Utils.only(right: 7.w),
-                        child: FlashSaleCard(item: sale,),
+                        child: FlashSaleCard(item: sale),
                       );
                     }),
                   ],
@@ -88,13 +87,54 @@ class FlashSaleCard extends StatelessWidget {
           SizedBox(
             height: 98.h,
             width: double.infinity,
-            child: CustomImage(path: item.imageUrl, fit: BoxFit.cover),
+            child: Stack(
+              children: [
+                CustomImage(path: item.imageUrl, fit: BoxFit.cover),
+                Positioned(
+                  right: 6,
+                  top: 6,
+                  child: Container(
+                    padding: Utils.all(value: 3.r),
+                    width: 18.w,
+                    height: 18,
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: CustomImage(path: KImages.wishlistInactive),
+                  ),
+                ),
+                Positioned(
+                  left: 6,
+                  top: 6,
+                  child: Container(
+                    padding: Utils.all(value: 0.0.r),
+                    width: 28.w,
+                    height: 16,
+                    decoration: BoxDecoration(
+                      color: secondaryColor,
+                      borderRadius: BorderRadius.circular(50.r),
+                    ),
+                    child: Center(
+                      child: CustomText(
+                        text: '25%',
+                        fontSize: 9.sp,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Utils.verticalSpace(6.h),
           GestureDetector(
-            onTap: (){
-              Navigator.of(context, rootNavigator: true).pushNamed(RouteNames.productDetailsScreen);
-           //   Navigator.pushNamed(context, RouteNames.productDetailsScreen);
+            onTap: () {
+              Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pushNamed(RouteNames.productDetailsScreen);
+              //   Navigator.pushNamed(context, RouteNames.productDetailsScreen);
             },
             child: CustomText(
               text: item.name,

@@ -84,7 +84,7 @@ class MyTheme {
           fontSize: 14.0,
           color: sTextColor,
         ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 17.0, horizontal: 20.0),
+        contentPadding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 20.0),
         fillColor: const Color(0xFFF8FAFC),
         filled: true,
         border: InputBorder.none, // No border initially

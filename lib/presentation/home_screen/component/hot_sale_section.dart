@@ -15,8 +15,6 @@ class HotSaleSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    print("full weight : ${size.width}");
-    print("helf weight : ${size.width * 0.5}");
     return SliverToBoxAdapter(
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,

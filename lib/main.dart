@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:ezstore/routes/route_names.dart';
 import 'package:ezstore/utils/constraints.dart';
 import 'package:ezstore/widgets/custom_theme.dart';
@@ -20,8 +22,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final logicalSize = window.physicalSize / window.devicePixelRatio;
+    final double height = logicalSize.height;
+
+    // Conditional design size
+    final designSize = height >= 950
+        ? const Size(475.0, 1012.0)
+        : const Size(375.0, 812.0);
+
     return ScreenUtilInit(
-      designSize: const Size(375.0, 812.0),
+      designSize: designSize,
       minTextAdapt: true,
       splitScreenMode: true,
       useInheritedMediaQuery: true,

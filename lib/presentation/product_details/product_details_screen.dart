@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ezstore/presentation/product_details/component/returan_policy_bottom_sheet.dart';
 import 'package:ezstore/routes/route_names.dart';
 import 'package:ezstore/utils/constraints.dart';
 import 'package:ezstore/utils/k_images.dart';
@@ -27,13 +28,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
-    double aspectRatio;
-    if (screenHeight < 800) {
-      aspectRatio = 0.72; // slightly taller cards for small screens
-    } else if (screenHeight < 900) {
-      aspectRatio = 0.74;
+    double cardHeight;
+    if (screenHeight >= 1000) {
+      cardHeight = 322.0; // Extra large screens (Pixel 9 Pro XL, etc.)
+    } else if (screenHeight >= 900) {
+      cardHeight = 240; // Large screens (Pixel 7 Pro, Pixel 8 Pro)
+    } else if (screenHeight >= 800) {
+      cardHeight = 246; // Medium-Large screens
+    } else if (screenHeight >= 700) {
+      cardHeight = 250; // Medium screens (Most common)
     } else {
-      aspectRatio = 0.55;
+      cardHeight = 250; // Small screens (720p devices)
     }
     return Scaffold(
       bottomNavigationBar: Padding(
@@ -69,7 +74,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   },
                   child: Container(
                     width: 150.w,
-                    height: 44.h,
+                    height: 44,
                     decoration: BoxDecoration(
                       color: whiteColor,
                       border: Border.all(color: borderColor, width: 1.0),
@@ -82,6 +87,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               Expanded(
                 child: PrimaryButton(
                   borderRadiusSize: 0.r,
+                  minimumSize: Size(150.w, 44),
                   text: 'Buy Now',
                   onPressed: () {
                     Navigator.pushNamed(context, RouteNames.orderConfirmScreen);
@@ -102,7 +108,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ProductReviewRatingWidget(),
             Padding(
               padding: Utils.symmetric(h: 17.0),
-              child: CustomText(text: "Similar Products", fontSize: 16.sp, fontWeight: FontWeight.w500,),
+              child: CustomText(
+                text: "Similar Products",
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             Utils.verticalSpace(4.h),
             Padding(
@@ -110,12 +120,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               child: GridView.builder(
                 padding: Utils.all(value: 0.0),
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(), // Prevents internal scrolling
+                physics:
+                    NeverScrollableScrollPhysics(), // Prevents internal scrolling
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 6,
                   mainAxisSpacing: 10,
-                  childAspectRatio: aspectRatio,  // Ad
+                  mainAxisExtent: cardHeight, // Ad
                 ),
                 itemCount: productList.length,
                 itemBuilder: (context, index) {
@@ -267,7 +278,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
                     width: 32.w,
                     height: 32.h,
                     decoration: BoxDecoration(
-                      border: Border.all(color: borderColor,width: 1),
+                      border: Border.all(color: borderColor, width: 1),
                     ),
                     child: Center(child: CustomText(text: 'S')),
                   ),
@@ -276,7 +287,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
                     width: 32.w,
                     height: 32.h,
                     decoration: BoxDecoration(
-                      border: Border.all(color: borderColor,width: 1),
+                      border: Border.all(color: borderColor, width: 1),
                     ),
                     child: Center(child: CustomText(text: 'M')),
                   ),
@@ -285,7 +296,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
                     width: 32.w,
                     height: 32.h,
                     decoration: BoxDecoration(
-                      border: Border.all(color: borderColor,width: 1),
+                      border: Border.all(color: borderColor, width: 1),
                     ),
                     child: Center(child: CustomText(text: 'L')),
                   ),
@@ -294,7 +305,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
                     width: 32.w,
                     height: 32.h,
                     decoration: BoxDecoration(
-                      border: Border.all(color: borderColor,width: 1),
+                      border: Border.all(color: borderColor, width: 1),
                     ),
                     child: Center(child: CustomText(text: 'XL')),
                   ),
@@ -303,7 +314,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
                     width: 32.w,
                     height: 32.h,
                     decoration: BoxDecoration(
-                      border: Border.all(color: borderColor,width: 1),
+                      border: Border.all(color: borderColor, width: 1),
                     ),
                     child: Center(child: CustomText(text: 'XXL')),
                   ),
@@ -317,7 +328,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
             children: [
               CustomImage(path: KImages.wishlistInactive),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, RouteNames.allCartScreen);
                 },
                 child: Container(
@@ -325,7 +336,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
                   height: 44.h,
                   decoration: BoxDecoration(
                     color: whiteColor,
-                    border: Border.all(color: borderColor,width: 1),
+                    border: Border.all(color: borderColor, width: 1),
                   ),
                   child: Center(child: CustomText(text: 'Add to Cart')),
                 ),
@@ -577,17 +588,33 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                 ],
               ),
               Utils.horizontalSpace(12.w),
-              Row(
-                children: [
-                  CustomText(
-                    text: 'Return Policy',
-                    color: textGreyColor,
-                    fontSize: 14.sp,
-                    decoration: TextDecoration.underline,
-                  ),
-                  Utils.horizontalSpace(4.w),
-                  Icon(Icons.arrow_forward_ios, size: 16.sp),
-                ],
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(12.r),
+                      ),
+                    ),
+                    backgroundColor: Colors.white,
+                    builder: (context) {
+                      return ReturanPolicyBottomSheet();
+                    },
+                  );
+                },
+                child: Row(
+                  children: [
+                    CustomText(
+                      text: 'Return Policy',
+                      color: textGreyColor,
+                      fontSize: 14.sp,
+                      decoration: TextDecoration.underline,
+                    ),
+                    Utils.horizontalSpace(4.w),
+                    Icon(Icons.arrow_forward_ios, size: 16.sp),
+                  ],
+                ),
               ),
             ],
           ),
